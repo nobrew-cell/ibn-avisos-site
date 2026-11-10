@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IBN Avisos — um aviso para quem não pôde estar no culto</title>
+<meta name="description" content="Protótipo de aplicação feito como projeto de extensão universitária: avisa quando o culto começa e leva a pessoa até a transmissão.">
+<link rel="icon" href="img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@125,800&family=IBM+Plex+Mono:wght@500&family=Orbitron:wght@800&family=Source+Serif+4:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--red:#ff0931;--ink:#141414;--gold:#e5ae45}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:#fff;color:var(--ink);font:19px/1.6 "Source Serif 4",Georgia,serif;text-align:center}
+img{display:block;max-width:100%}
+h1,h2,h3{font-family:Archivo,"Arial Black",Impact,sans-serif;font-stretch:125%;font-weight:800;line-height:1.05;letter-spacing:-.02em}
+.w{max-width:1040px;margin:0 auto;padding:0 22px}
+.mono{font:500 14px/1.3 "IBM Plex Mono",ui-monospace,monospace}
+.st{display:inline-block;color:var(--red);border:2px solid var(--ink);padding:4px 9px;background:#fff}
+/* topo */
+.hero{display:grid;grid-template-columns:1fr 1fr;grid-template-areas:"titulo titulo" "pair ficha";gap:40px 56px;align-items:center;padding:64px 22px 70px}
+.titulo{grid-area:titulo}
+h1{font-size:clamp(48px,10vw,104px);margin:16px 0 14px}
+h1 span{box-shadow:inset 0 -.28em 0 var(--red)}
+.sub{font-size:23px}
+.pair{grid-area:pair;display:flex;align-items:flex-end;justify-content:center;gap:12px;filter:drop-shadow(6px 6px 0 rgba(0,0,0,.2))}
+.pair .c{width:19%}
+.pair .i{width:76%}
+.ficha{grid-area:ficha;border:3px solid var(--ink);text-align:left;width:100%}
+.ficha p{padding:11px 16px;border-top:2px solid var(--ink);font-size:17px;line-height:1.35}
+.ficha p:first-child{border-top:0;background:var(--ink);color:#fff;font-weight:600}
+/* seções */
+section{border-top:3px solid var(--ink);padding:76px 0 96px;scroll-margin-top:0}
+.hd{display:flex;flex-direction:column;align-items:center;gap:14px;margin-bottom:38px}
+h2{font-size:clamp(28px,4.6vw,44px)}
+.tx{max-width:34em;margin:0 auto}
+.tx p+p{margin-top:16px}
+.tx em{font-style:normal;background:linear-gradient(transparent 62%,#ffd9df 0)}
+.callout{max-width:760px;margin:50px auto 0;background:var(--ink);color:#fff;padding:34px 30px;border:3px solid var(--ink)}
+.callout .mono{color:#fff;letter-spacing:.06em;margin-bottom:14px}
+.callout .big{font-size:clamp(21px,3.4vw,28px);line-height:1.4}
+.callout .big+.big{margin-top:14px}
+.callout mark{background:var(--red);color:#fff;padding:0 6px}
+.pensa{width:110px;margin:34px auto 0}
+/* telas */
+.grp{margin-top:100px}
+.grp:first-of-type{margin-top:0}
+.grp h3{font-size:24px;margin-bottom:12px}
+.grp .tx{margin-bottom:34px}
+.row{display:grid;gap:34px;justify-content:center;align-items:end}
+.r2{grid-template-columns:repeat(2,minmax(0,290px))}
+.r3{grid-template-columns:repeat(3,minmax(0,290px))}
+.r4{grid-template-columns:repeat(4,minmax(0,250px));gap:26px}
+.fg{margin:0 auto;width:100%}
+.scr{width:100%;border:2px solid var(--ink);border-radius:26px;background:#fff}
+.mm{position:relative;z-index:1;display:block;width:56%;margin:0 auto -3px}
+figcaption{margin-top:16px;font-size:16.5px;line-height:1.45}
+figcaption b{display:block;font:800 17px/1.2 Archivo,sans-serif;font-stretch:125%;letter-spacing:-.01em;margin-bottom:6px}
+.lista{max-width:640px;margin:24px auto 0;padding:0;list-style:none;border-top:2px solid var(--ink);text-align:left}
+.lista li{padding:14px 4px;border-bottom:2px solid var(--ink)}
+.apr{width:150px;margin:36px auto 0}
+.voto{position:relative;border:3px solid var(--ink);padding:26px 22px 24px;margin:110px auto 0;max-width:720px}
+.voto .mm{position:absolute;left:50%;bottom:100%;transform:translateX(-50%);width:150px;margin:0 0 -3px}
+.voto iframe{display:block;width:100%;max-width:640px;height:786px;border:2px solid var(--ink);margin:16px auto 0}
+.voto a{color:var(--ink)}
+footer{background:var(--ink);color:#fff;padding:36px 0;font-size:16px}
+footer p+p{margin-top:4px;color:#bbb}
+/* relógio-menu */
+#rel{position:fixed;top:12px;right:12px;z-index:50;text-align:right}
+#rel button{display:block;margin-left:auto;background:none;border:0;padding:0;cursor:pointer;filter:drop-shadow(3px 3px 0 rgba(0,0,0,.25))}
+#rel button:focus-visible{outline:3px solid var(--red);outline-offset:3px}
+#rel svg{width:120px;height:auto;display:block}
+#men{display:none;margin-top:10px;background:#fff;border:3px solid var(--ink);text-align:left;min-width:250px}
+#men.on{display:block}
+#men a{display:flex;gap:12px;align-items:center;padding:11px 14px;border-top:2px solid var(--ink);color:var(--ink);text-decoration:none;font-size:16px}
+#men a:first-child{border-top:0}
+#men a:hover,#men a.at{background:var(--ink);color:#fff}
+#men a span{color:var(--red);min-width:44px}
+#men a:hover span,#men a.at span{color:#fff}
+@media(max-width:820px){
+ .hero{grid-template-columns:1fr;grid-template-areas:"titulo" "pair" "ficha";gap:34px}
+ .pair{max-width:420px;margin:0 auto}
+ .r3,.r4{grid-template-columns:repeat(2,minmax(0,260px))}
+ #rel svg{width:96px}
+}
+@media(max-width:520px){
+ body{font-size:18px}
+ .r2,.r3,.r4{grid-template-columns:minmax(0,290px)}
+ .voto{padding:20px 12px}.voto .mm{width:110px}.callout{padding:26px 20px}
+ #men{min-width:220px}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<div id="rel">
+<button type="button" id="rb" aria-expanded="false" aria-controls="men" aria-label="Contador e sumário: abrir o menu de seções">
+<svg viewBox="0 0 120 52" role="img" aria-hidden="true"><rect x="3" y="3" width="114" height="46" rx="14" fill="#141414" stroke="#e5ae45" stroke-width="5"/><text id="rt" x="60" y="27" text-anchor="middle" dominant-baseline="central" font-family="Orbitron,'Courier New',monospace" font-weight="800" font-size="25" fill="#fff">00:10</text></svg>
+</button>
+<nav id="men" aria-label="Sumário"></nav>
+</div>
+
+<header class="w hero">
+<div class="titulo">
+<span class="mono st">IBN · protótipo</span>
+<h1>IBN <span>Avisos</span></h1>
+<p class="sub">Um aviso para quem não pôde estar no culto.</p>
+</div>
+<div class="pair"><img class="c" src="img/costas.png" alt="O mascote, um relógio de smoking, de costas, olhando para o ícone do aplicativo"><img class="i" src="img/icone.png" alt="Ícone do IBN Avisos: um sino branco sobre uma forma vermelha"></div>
+<div class="ficha">
+<p>Projeto de Extensão Universitária</p>
+<p>UNIFACS — Análise e Desenvolvimento de Sistemas</p>
+<p>Programa: Inovação, Ciência e Transformação Digital</p>
+<p>ODS 9 — Indústria, Inovação e Infraestrutura</p>
+<p>Desenvolvido por Gabriel Conceição da Silva</p>
+</div>
+</header>
+
+<section data-t="00:10" data-n="Domingo, 19h" id="s10"><div class="w">
+<div class="hd"><span class="mono st">00:10</span><h2>Domingo, 19h</h2></div>
+<div class="tx">
+<p>Não importa onde você esteja, seja presencialmente ou online, chegar a tempo é difícil. Chove, o trânsito para, chega uma encomenda, o micro-ondas apita, ou o aviso que deveria chamar você não funciona. Quando você vê, o culto já começou e a oração do começo ficou para trás.</p>
+<p>Como não posso resolver a parte do presencial, posso tentar aliviar a online. O IBN Avisos é um protótipo de aplicação feito para esse momento. Ele avisa quando a transmissão começa e leva a pessoa até ela. E tenta uma coisa mais difícil: fazer quem assiste de casa continuar sendo percebido pela comunidade.</p>
+<p><em>Aqui vão as telas do protótipo, uma por uma.</em></p>
+</div>
+</div></section>
+
+<section data-t="00:08" data-n="Por que isso existe" id="s8"><div class="w">
+<div class="hd"><span class="mono st">00:08</span><h2>Por que isso existe</h2></div>
+<div class="tx"><p>Antes de desenhar qualquer tela, foram duas entrevistas, um questionário e observação no próprio culto. Três coisas se repetiram: o aviso do YouTube demora, achar a transmissão dá trabalho e assistir de casa parece ver televisão.</p></div>
+<div class="callout">
+<p class="mono">E POR QUE NÃO O SININHO DO YOUTUBE?</p>
+<p class="big">Porque cada pessoa precisa ativar, ele serve a qualquer canal e se perde no meio de outras notificações.</p>
+<p class="big">Um app só para isso é como usar <mark>uma calculadora comum em vez da do celular</mark>: ela só faz conta, e você não se distrai.</p>
+</div>
+<img class="pensa" src="img/pensa.png" alt="O mascote pensativo, com a mão no queixo">
+</div></section>
+
+<section data-t="00:06" data-n="Entrando no app" id="s6"><div class="w">
+<div class="hd"><span class="mono st">00:06</span><h2>Entrando no app</h2></div>
+
+<div class="grp"><div class="row r2">
+<figure class="fg"><img class="scr" src="img/iphone.png" alt="Tela inicial de um celular com o ícone do IBN Avisos"><figcaption><b>Ícone</b>Um sino dentro de um A, que fica na tela inicial do celular como qualquer outro aplicativo. A tela de iPhone foi escolhida só pela estética: o app foi pensado para rodar no navegador de qualquer celular, Android inclusive. Não precisa ter iPhone. (Geladeira inteligente eu ainda não testei.)</figcaption></figure>
+<figure class="fg"><img class="scr" src="img/splash.png" alt="Tela de abertura com o mascote deitado e o nome do aplicativo"><figcaption><b>Abertura</b>O relógio de smoking é o mascote, e não tem rosto de propósito.</figcaption></figure>
+</div></div>
+
+<div class="grp">
+<h3>Três boas-vindas</h3>
+<div class="tx"><p>“O culto já começou?”, “Dessa vez, chegue a tempo” e “O próximo culto começa aqui”. Uma ideia em cada tela, antes de pedir qualquer coisa.</p></div>
+<div class="row r3">
+<figure class="fg"><img class="scr" src="img/ap1.png" alt="Boas-vindas: O culto já começou?"></figure>
+<figure class="fg"><img class="scr" src="img/ap2.png" alt="Boas-vindas: Dessa vez, chegue a tempo"></figure>
+<figure class="fg"><img class="scr" src="img/ap3.png" alt="Boas-vindas: O próximo culto começa aqui"></figure>
+</div></div>
+
+<div class="grp"><div class="row r3">
+<figure class="fg"><img class="mm" src="img/m1.png" alt=""><img class="scr" src="img/perfis.png" alt="Tela de escolha entre frequentador, pastor e equipe de mídia"><figcaption><b>Quem é você?</b>Frequentador, pastor ou mídia. No protótipo dá para ver os três. No app de verdade, o frequentador entraria direto, sem escolher nada.</figcaption></figure>
+<figure class="fg"><img class="scr" src="img/login.png" alt="Login do frequentador, com Google ou sem conta"><figcaption><b>Entrar</b>Com o Google ou sem conta. Sem conta, o que a pessoa escolhe fica só no aparelho dela.</figcaption></figure>
+<figure class="fg"><img class="scr" src="img/google.png" alt="Tela escura sincronizando as preferências"><figcaption><b>Sincronizando</b>O login com o Google, por enquanto, é simulado.</figcaption></figure>
+</div></div>
+</div></section>
+
+<section data-t="00:04" data-n="O início do frequentador" id="s4"><div class="w">
+<div class="hd"><span class="mono st">00:04</span><h2>O início do frequentador</h2></div>
+<div class="row r4">
+<figure class="fg"><img class="scr" src="img/home.png" alt="Início: estamos preparando um aviso"><figcaption><b>Preparando um aviso</b>O mascote espera deitado enquanto o app verifica se a transmissão está mesmo no ar, e dá para tocar em “Verificar transmissão” para conferir na hora.</figcaption></figure>
+<figure class="fg"><img class="scr" src="img/espera.png" alt="O mascote de perto com um contador em 00:10"><figcaption><b>A espera de 5 minutos</b>Quando percebe uma transmissão, o app espera cinco minutos e confere se ela continua no ar antes de avisar. Assim ninguém é chamado por causa de um teste de som. Aqui a espera dura 10 segundos, porque ninguém merece esperar cinco minutos numa demonstração.</figcaption></figure>
+<figure class="fg"><img class="scr" src="img/aovivo.png" alt="Início: estamos ao vivo, com botões de entrar e compartilhar"><figcaption><b>Estamos ao vivo</b>O aviso chega com dois botões: entrar na live ou compartilhar o link com alguém.</figcaption></figure>
+<figure class="fg"><img class="scr" src="img/notif.png" alt="Lista de notificações"><figcaption><b>Avisos recentes</b>Os últimos avisos ficam guardados, junto de dicas como fixar o app na tela inicial.</figcaption></figure>
+</div>
+</div></section>
+
+<section data-t="00:02" data-n="O resto do app" id="s2"><div class="w">
+<div class="hd"><span class="mono st">00:02</span><h2>O resto do app</h2></div>
+<div class="grp"><div class="row r3">
+<figure class="fg"><img class="mm" src="img/m2.png" alt=""><img class="scr" src="img/lives.png" alt="Lives anteriores"><figcaption><b>Lives anteriores</b>As últimas três semanas, com um atalho para a playlist do canal. Quem perdeu o começo assiste depois.</figcaption></figure>
+<figure class="fg"><img class="mm" src="img/m1.png" alt=""><img class="scr" src="img/prefs.png" alt="Preferências de cultos"><figcaption><b>Preferências</b>A pessoa escolhe quais cultos quer receber: quarta à noite, domingo de manhã, domingo à noite ou os extras. E tem o “estou presencialmente no culto”, que deixa o aviso quieto por algumas horas.</figcaption></figure>
+<figure class="fg"><img class="mm" src="img/m2.png" alt=""><img class="scr" src="img/perfil.png" alt="Perfil com foto de exemplo"><figcaption><b>Perfil</b>A foto é só um exemplo de como ficaria.</figcaption></figure>
+</div></div>
+
+<div class="grp">
+<h3>Pastor e mídia</h3>
+<div class="tx"><p>Os dois entram com usuário e senha. No protótipo, essas áreas ainda são um aviso de “em breve”, e a da mídia foi pensada para computador. Quem esquece a senha vê um aviso para falar com o desenvolvedor.</p></div>
+<div class="row r4">
+<figure class="fg"><img class="scr" src="img/pastor.png" alt="Login do pastor"><figcaption>Login do pastor</figcaption></figure>
+<figure class="fg"><img class="scr" src="img/avpastor.png" alt="Aviso: área pastoral em breve"><figcaption>Área pastoral, em breve</figcaption></figure>
+<figure class="fg"><img class="scr" src="img/avmidia.png" alt="Aviso: disponível para computador"><figcaption>Área da mídia, só no computador</figcaption></figure>
+<figure class="fg"><img class="scr" src="img/senha.png" alt="Tela de esqueci a senha"><figcaption>Esqueci a senha</figcaption></figure>
+</div></div>
+</div></section>
+
+<section data-t="00:01" data-n="O que ainda poderia vir" id="s1"><div class="w">
+<div class="hd"><span class="mono st">00:01</span><h2>O que ainda poderia vir</h2></div>
+<div class="tx"><p>Aqui eu só aponto para onde o app pode ir:</p></div>
+<ul class="lista">
+<li>Comentários importantes, como um pedido de oração, aprovados pela mídia e entregues ao pastor, para quem assiste de casa ser lido.</li>
+<li>Uma área da mídia com mensagens prontas e um botão de “avisar agora”, para quando o aviso automático falhar.</li>
+<li>Aviso por localização, para não chamar quem já está no templo.</li>
+<li>Avisos de outros conteúdos do canal, desligados por padrão.</li>
+</ul>
+<div class="tx" style="margin-top:22px"><p>Tudo isso guardando o mínimo possível de dados, porque convicção religiosa é dado sensível pela lei.</p></div>
+<img class="apr" src="img/apr-e.png" alt="O mascote apresentando com a mão aberta">
+</div></section>
+
+<section data-t="00:00" data-n="E agora?" id="s0"><div class="w">
+<div class="hd"><span class="mono st">00:00</span><h2>E agora?</h2></div>
+<div class="tx">
+<p>Há uma pergunta que o projeto ainda não respondeu: isso deveria continuar depois da extensão, ou é um projeto que cumpriu seu papel e fica por aqui?</p>
+<p>Qualquer resposta vale.</p>
+</div>
+<div class="voto">
+<img class="mm" src="img/apr-d.png" alt="">
+<p class="mono">RESPOSTA ANÔNIMA · MENOS DE UM MINUTO</p>
+<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfptO02hjL5MDLyKSmIW22_JxC3yTnsqbBBW_lV7ZA9tEyySw/viewform?embedded=true" title="Formulário: o IBN Avisos deveria continuar?" marginheight="0" marginwidth="0">Carregando…</iframe>
+<p style="margin-top:14px;font-size:16px">Não abriu? <a href="https://docs.google.com/forms/d/e/1FAIpQLSfptO02hjL5MDLyKSmIW22_JxC3yTnsqbBBW_lV7ZA9tEyySw/viewform">Responda em outra aba</a>.</p>
+</div>
+</div></section>
+
+<footer><div class="w"><p>IBN Avisos · protótipo de extensão universitária</p><p>Gabriel Conceição da Silva · UNIFACS · Análise e Desenvolvimento de Sistemas</p></div></footer>
+
+<script>
+(function(){
+var secs=[].slice.call(document.querySelectorAll('section[data-t]')),men=document.getElementById('men'),rb=document.getElementById('rb'),rt=document.getElementById('rt'),links=[];
+secs.forEach(function(s){var a=document.createElement('a');a.href='#'+s.id;a.innerHTML='<span class="mono">'+s.dataset.t+'</span>'+s.dataset.n;a.addEventListener('click',function(){fecha()});men.appendChild(a);links.push(a)});
+function fecha(){men.classList.remove('on');rb.setAttribute('aria-expanded','false')}
+rb.addEventListener('click',function(e){e.stopPropagation();var o=men.classList.toggle('on');rb.setAttribute('aria-expanded',o)});
+document.addEventListener('click',function(e){if(!men.contains(e.target))fecha()});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'){fecha();rb.focus()}});
+function atual(){var y=window.innerHeight*.4,cur=null;secs.forEach(function(s){if(s.getBoundingClientRect().top<=y)cur=s});
+ var t=cur?cur.dataset.t:'00:10';rt.textContent=t;links.forEach(function(a,i){a.classList.toggle('at',secs[i]===cur)})}
+window.addEventListener('scroll',atual,{passive:true});window.addEventListener('resize',atual);atual();
+})();
+</script>
+</body>
+</html>
