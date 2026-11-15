@@ -42,9 +42,8 @@ h1 span{box-shadow:inset 0 -.28em 0 var(--red)}
 .btn.p{background:var(--red);color:#fff;font-size:18px;padding:14px 30px}
 .btn.s{font-size:15px;box-shadow:none;min-height:46px}
 .btn.s:hover{transform:none;background:var(--ink);color:#fff}
-.pair{grid-area:pair;display:flex;align-items:flex-end;justify-content:center;gap:12px;filter:drop-shadow(6px 6px 0 rgba(0,0,0,.2))}
-.pair .c{width:19%}
-.pair .i{width:76%}
+.pair{grid-area:pair;display:flex;align-items:center;justify-content:center}
+.pair img{width:100%;max-width:460px;height:auto}
 .ficha{grid-area:ficha;border:3px solid var(--ink);text-align:left;width:100%}
 .ficha p{padding:11px 16px;border-top:2px solid var(--ink);font-size:17px;line-height:1.35}
 .ficha p:first-child{border-top:0;background:var(--ink);color:#fff;font-weight:600}
@@ -104,21 +103,23 @@ figcaption b{display:block;font:800 17px/1.2 Archivo,sans-serif;font-stretch:125
 .q .n{color:var(--red);margin-bottom:10px;display:block}
 .q h3{font-size:22px;margin-bottom:10px}
 .q p{font-size:18px;line-height:1.45}
-.zap{max-width:900px;margin:22px auto 0;background:var(--ink);color:#fff;text-align:left;padding:26px 26px 28px;border:3px solid var(--ink);display:grid;grid-template-columns:1fr 110px;gap:24px;align-items:center}
-.zap .mono{color:var(--gold);letter-spacing:.06em;margin-bottom:12px;display:block}
+.zap{max-width:900px;margin:26px auto 0;background:#fff;color:var(--ink);text-align:left;padding:26px 26px 28px;border:3px solid #1f9d3b;box-shadow:7px 7px 0 #45d354;display:grid;grid-template-columns:84px 1fr;gap:22px 26px;align-items:start}
+.zap .zi{width:84px;height:84px;border:3px solid #1f9d3b;border-radius:20px;overflow:hidden;background:#45d354}
+.zap .zi img{width:100%;height:100%}
+.zap .mono{color:#17802f;letter-spacing:.06em;margin-bottom:10px;display:block}
 .zap h3{font-size:24px;margin-bottom:12px}
 .zap p+p{margin-top:12px}
-.zap mark{background:var(--red);color:#fff;padding:0 5px}
+.zap mark{background:#c9f3d0;color:var(--ink);padding:0 5px}
 .zap ol{margin:10px 0 0 1.2em;padding:0}
 .zap li{margin-top:10px}
-.zap img{width:110px}
+.zap li::marker{color:#17802f;font-weight:700}
 /* fluxo */
 .leg{display:flex;gap:10px 18px;justify-content:center;flex-wrap:wrap;margin:0 auto 34px;max-width:720px}
 .tag{display:inline-block;font:500 12px/1 "IBM Plex Mono",monospace;padding:5px 8px;letter-spacing:.03em;background:#fff}
 .tag.sim{border:2px solid var(--red);color:var(--red)}
 .tag.prev{border:2px dashed var(--ink);color:var(--ink)}
 .fluxo{list-style:none;padding:0;max-width:700px;margin:0 auto;text-align:left}
-.passo{display:grid;grid-template-columns:48px 1fr 84px;gap:8px 18px;position:relative;padding-bottom:34px}
+.passo{display:grid;grid-template-columns:48px 1fr;gap:8px 18px;position:relative;padding-bottom:34px}
 .passo:last-child{padding-bottom:0}
 .passo::before{content:"";position:absolute;left:22px;top:48px;bottom:0;width:4px;background:var(--ink)}
 .passo.prev::before{background:repeating-linear-gradient(var(--ink) 0 8px,transparent 8px 14px)}
@@ -128,7 +129,6 @@ figcaption b{display:block;font:800 17px/1.2 Archivo,sans-serif;font-stretch:125
 .passo h3{font-size:21px;margin:4px 0 6px}
 .passo p{font-size:17px;line-height:1.45}
 .passo .tag{margin-top:10px}
-.passo .mu{align-self:start;justify-self:center;height:84px;width:auto;max-width:84px;object-fit:contain}
 /* 00:01 */
 .dois{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;max-width:900px;margin:0 auto;text-align:left;align-items:stretch}
 .col{border:3px solid var(--ink);background:#fff;padding:22px 22px 26px}
@@ -139,7 +139,7 @@ figcaption b{display:block;font:800 17px/1.2 Archivo,sans-serif;font-stretch:125
 .col ul{list-style:none;padding:0;border-top:2px solid var(--ink);margin-top:16px}
 .col li{padding:12px 2px;border-bottom:2px solid var(--ink);font-size:17px;line-height:1.4}
 /* formulário */
-.voto{position:relative;border:3px solid var(--ink);padding:26px 22px 24px;margin:110px auto 0;max-width:720px;background:#fff}
+.voto{position:relative;border:3px solid var(--ink);padding:26px 22px 24px;margin:230px auto 0;max-width:720px;background:#fff}
 .voto .mm{position:absolute;left:50%;bottom:100%;transform:translateX(-50%);width:150px;margin:0 0 -3px}
 .voto iframe{display:block;width:100%;max-width:640px;height:786px;border:2px solid var(--ink);margin:16px auto 0}
 .voto a{color:var(--ink)}
@@ -152,9 +152,8 @@ footer p+p{margin-top:4px;color:#bbb}
 #rel{position:fixed;top:12px;right:12px;z-index:50;text-align:right}
 #rel button{display:block;margin-left:auto;background:none;border:0;padding:0;cursor:pointer;filter:drop-shadow(3px 3px 0 rgba(0,0,0,.25))}
 #rel svg{width:120px;height:auto;display:block}
-#rel .dica{display:block;margin:-2px 0 0;font:500 10px/1 "IBM Plex Mono",monospace;letter-spacing:.14em;color:#fff;background:var(--ink);padding:3px 0 3px 3px;border:2px solid var(--ink);text-align:center}
-#rel .dica i{font-style:normal;display:inline-block;transition:transform .15s}
-#rel button[aria-expanded=true] .dica i{transform:rotate(180deg)}
+#rel #chv{transform-box:fill-box;transform-origin:center;transition:transform .15s}
+#rel button[aria-expanded=true] #chv{transform:rotate(180deg)}
 #men{display:none;margin-top:10px;background:#fff;border:3px solid var(--ink);text-align:left;min-width:250px;max-height:calc(100vh - 120px);overflow-y:auto;overscroll-behavior:contain}
 #men.on{display:block}
 #men a{display:flex;gap:12px;align-items:center;padding:11px 14px;border-top:2px solid var(--ink);color:var(--ink);text-decoration:none;font-size:16px}
@@ -166,7 +165,7 @@ footer p+p{margin-top:4px;color:#bbb}
 #toast{position:fixed;left:50%;bottom:20px;transform:translate(-50%,30px);opacity:0;pointer-events:none;z-index:80;background:var(--ink);color:#fff;border:3px solid var(--gold);padding:12px 16px;font-size:16px;max-width:calc(100vw - 32px);transition:.2s}
 #toast.on{opacity:1;transform:translate(-50%,0)}
 /* ampliação */
-#lb{position:fixed;inset:0;z-index:100;background:rgba(10,10,10,.94);display:none;flex-direction:column;color:#fff;touch-action:none;user-select:none;-webkit-user-select:none}
+#lb{position:fixed;inset:0;z-index:100;background:rgba(10,10,10,.97);display:none;flex-direction:column;color:#fff;touch-action:none;user-select:none;-webkit-user-select:none}
 #lb.on{display:flex}
 #lb .bar{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 12px;flex:none}
 #lb .bar .mono{color:#fff}
@@ -174,7 +173,7 @@ footer p+p{margin-top:4px;color:#bbb}
 #lb button{min-width:44px;height:44px;background:#fff;color:var(--ink);border:2px solid var(--ink);font:800 20px/1 Archivo,sans-serif;cursor:pointer;display:grid;place-items:center;padding:0 8px}
 #lb button:hover{background:var(--gold)}
 #lb button:disabled{opacity:.35;cursor:default}
-#lb .stage{flex:1;position:relative;overflow:hidden;display:grid;place-items:center;cursor:grab}
+#lb .stage{flex:1;min-height:0;position:relative;overflow:hidden;display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,1fr);place-items:center;cursor:grab}
 #lb .stage.z{cursor:move}
 #lb img{max-width:94vw;max-height:100%;width:auto;height:auto;object-fit:contain;transform-origin:center;will-change:transform;pointer-events:none;border-radius:20px;background:#fff;-webkit-user-drag:none}
 #lb .nv{position:absolute;top:50%;transform:translateY(-50%);z-index:2}
@@ -200,7 +199,7 @@ footer p+p{margin-top:4px;color:#bbb}
  .btn.p{font-size:17px}
  .r2,.r3,.r4{grid-template-columns:minmax(0,218px)}
  .row{gap:30px}
- .voto{padding:20px 12px;margin-top:100px}.voto .mm{width:110px}.callout{padding:26px 20px}
+ .voto{padding:20px 12px;margin-top:185px}.voto .mm{width:110px}.callout{padding:26px 20px}
  #men{min-width:220px}
  .tools{grid-template-columns:1fr}
  .tool.zero{flex-direction:column;align-items:flex-start;gap:12px;padding:18px 18px 20px}
@@ -208,9 +207,8 @@ footer p+p{margin-top:4px;color:#bbb}
  .passo{grid-template-columns:40px 1fr;gap:6px 14px}
  .passo::before{left:18px;top:40px}
  .num{width:40px;height:40px;font-size:16px}
- .passo .mu{grid-column:2;justify-self:start;height:64px;max-width:64px;margin-top:4px}
- .zap{grid-template-columns:1fr;padding:22px 18px 24px}
- .zap img{order:-1;width:84px}
+  .zap{grid-template-columns:1fr;padding:22px 18px 24px;box-shadow:5px 5px 0 #45d354}
+ .zap .zi{width:64px;height:64px;border-radius:16px}
  .q{padding:18px 18px 20px}
  .col{padding:18px 16px 22px}
  .fm summary{display:flex}
@@ -226,15 +224,14 @@ footer p+p{margin-top:4px;color:#bbb}
  #rel svg{width:88px}
 }
 @media(min-width:521px){.fm .ifr{display:block}}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn,#toast,#rel .dica i{transition:none}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn,#toast,#rel #chv{transition:none}}
 </style>
 </head>
 <body>
 
 <div id="rel">
 <button type="button" id="rb" aria-expanded="false" aria-controls="men" aria-label="Contador e sumário: abrir o menu de seções">
-<svg viewBox="0 0 120 52" role="img" aria-hidden="true"><rect x="3" y="3" width="114" height="46" rx="14" fill="#141414" stroke="#e5ae45" stroke-width="5"/><text id="rt" x="60" y="27" text-anchor="middle" dominant-baseline="central" font-family="Orbitron,'Courier New',monospace" font-weight="800" font-size="25" fill="#fff">00:10</text></svg>
-<span class="dica" aria-hidden="true">MENU <i>▾</i></span>
+<svg viewBox="0 0 120 52" role="img" aria-hidden="true"><rect x="3" y="3" width="114" height="46" rx="14" fill="#141414" stroke="#e5ae45" stroke-width="5"/><text id="rt" x="60" y="22" text-anchor="middle" dominant-baseline="central" font-family="Orbitron,'Courier New',monospace" font-weight="800" font-size="25" fill="#fff">00:10</text><path id="chv" d="M53 37.5L60 43.5L67 37.5" fill="none" stroke="#e5ae45" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
 </button>
 <nav id="men" aria-label="Sumário"></nav>
 </div>
@@ -252,7 +249,7 @@ footer p+p{margin-top:4px;color:#bbb}
 <a class="btn s" href="#placeholder-anuncio" data-placeholder="o link do anúncio">Assistir ao anúncio</a>
 </div>
 </div>
-<div class="pair"><img class="c" src="img/costas.png" width="184" height="376" alt="O mascote, um relógio de smoking, de costas, olhando para o ícone do aplicativo"><img class="i" src="img/icone.png" width="600" height="482" alt="Ícone do IBN Avisos: um sino branco sobre uma forma vermelha"></div>
+<div class="pair"><img src="img/hero.svg" width="1125" height="1024" alt="O ícone do IBN Avisos, um sino branco sobre uma forma vermelha, e o mascote de smoking, de costas, olhando para ele"></div>
 <div class="ficha">
 <p>Projeto de Extensão Universitária</p>
 <p>UNIFACS — Análise e Desenvolvimento de Sistemas</p>
@@ -268,7 +265,6 @@ footer p+p{margin-top:4px;color:#bbb}
 <div class="tx">
 <p>Não importa onde você esteja, seja presencialmente ou online, chegar a tempo é difícil. Chove, o trânsito para, chega uma encomenda, o micro-ondas apita, ou o aviso que deveria chamar você não funciona. Quando você vê, o culto já começou e a oração do começo ficou para trás.</p>
 <p>Como não posso resolver a parte do presencial, posso tentar aliviar a online. O IBN Avisos é um protótipo de aplicação feito para esse momento. Ele avisa quando a transmissão começa e leva a pessoa até ela. E tenta uma coisa mais difícil: fazer quem assiste de casa continuar sendo percebido pela comunidade.</p>
-<p><em>Aqui vão as telas do protótipo, uma por uma.</em></p>
 </div>
 </div></section>
 
@@ -315,7 +311,8 @@ footer p+p{margin-top:4px;color:#bbb}
 <article class="q"><span class="mono n">PERGUNTA 3</span><h3>Por que esperar cinco minutos?</h3><p>Para evitar notificações provocadas por testes de transmissão.</p></article>
 <article class="q"><span class="mono n">PERGUNTA 4</span><h3>Por que não substituir o YouTube?</h3><p>Porque a proposta é facilitar o acesso ao conteúdo, não criar outra plataforma de vídeos.</p></article>
 </div>
-<div class="zap">
+ <div class="zap">
+<span class="zi"><img src="img/zap-icon.svg" width="84" height="84" loading="lazy" decoding="async" alt="Ícone do WhatsApp"></span>
 <div>
 <span class="mono">E O WHATSAPP?</span>
 <h3>Uma ideia que eu não cheguei a tentar.</h3>
@@ -325,7 +322,6 @@ footer p+p{margin-top:4px;color:#bbb}
 <li><b>Seria trocar um terceiro por outro.</b> Sair das notificações do YouTube para as do WhatsApp é trocar algo que não é meu por outra coisa que também não é. E a mensagem do bot sobre o culto ia disputar atenção com outras dez mensagens de contatos e grupos.</li>
 </ol>
 </div>
-<img src="img/pensa.png" width="223" height="359" loading="lazy" decoding="async" alt="">
 </div>
 </div></section>
 
@@ -334,23 +330,23 @@ footer p+p{margin-top:4px;color:#bbb}
 <div class="hd"><span class="mono st">00:06</span><h2>Entrando no app</h2></div>
 
 <div class="grp"><div class="row r2">
-<figure class="fg"><img class="scr" src="img/iphone.png" width="300" height="650" loading="lazy" decoding="async" alt="Tela inicial de um celular com o ícone do IBN Avisos"><figcaption><b>Ícone</b>Um sino dentro de um A, que fica na tela inicial do celular como qualquer outro aplicativo. A tela de iPhone foi escolhida só pela estética: o app foi pensado para rodar no navegador de qualquer celular, Android inclusive. Não precisa ter iPhone. (Geladeira inteligente eu ainda não testei.)</figcaption></figure>
-<figure class="fg"><img class="scr" src="img/splash.png" width="300" height="650" loading="lazy" decoding="async" alt="Tela de abertura com o mascote deitado e o nome do aplicativo"><figcaption><b>Abertura</b>O relógio de smoking é o mascote, e não tem rosto de propósito.</figcaption></figure>
+<figure class="fg"><img class="scr" data-full="img/full/iphone.webp" src="img/iphone.png" width="600" height="1300" loading="lazy" decoding="async" alt="Tela inicial de um celular com o ícone do IBN Avisos"><figcaption><b>Ícone</b>Um sino dentro de um A, que fica na tela inicial do celular como qualquer outro aplicativo. A tela de iPhone foi escolhida só pela estética: o app foi pensado para rodar no navegador de qualquer celular, Android inclusive. Não precisa ter iPhone. (Geladeira inteligente eu ainda não testei.)</figcaption></figure>
+<figure class="fg"><img class="scr" data-full="img/full/splash.webp" src="img/splash.png" width="600" height="1300" loading="lazy" decoding="async" alt="Tela de abertura com o mascote deitado e o nome do aplicativo"><figcaption><b>Abertura</b>O relógio de smoking é o mascote, e não tem rosto de propósito.</figcaption></figure>
 </div></div>
 
 <div class="grp">
 <h3>Três boas-vindas</h3>
 <div class="tx"><p>“O culto já começou?”, “Dessa vez, chegue a tempo” e “O próximo culto começa aqui”. Uma ideia em cada tela, antes de pedir qualquer coisa.</p></div>
 <div class="row r3">
-<figure class="fg"><img class="scr" src="img/ap1.png" width="430" height="932" loading="lazy" decoding="async" alt="Boas-vindas: O culto já começou?"></figure>
-<figure class="fg"><img class="scr" src="img/ap2.png" width="430" height="932" loading="lazy" decoding="async" alt="Boas-vindas: Dessa vez, chegue a tempo"></figure>
-<figure class="fg"><img class="scr" src="img/ap3.png" width="430" height="932" loading="lazy" decoding="async" alt="Boas-vindas: O próximo culto começa aqui"></figure>
+<figure class="fg"><img class="scr" data-full="img/full/ap1.webp" src="img/ap1.png" width="600" height="1300" loading="lazy" decoding="async" alt="Boas-vindas: O culto já começou?"></figure>
+<figure class="fg"><img class="scr" data-full="img/full/ap2.webp" src="img/ap2.png" width="600" height="1300" loading="lazy" decoding="async" alt="Boas-vindas: Dessa vez, chegue a tempo"></figure>
+<figure class="fg"><img class="scr" data-full="img/full/ap3.webp" src="img/ap3.png" width="600" height="1300" loading="lazy" decoding="async" alt="Boas-vindas: O próximo culto começa aqui"></figure>
 </div></div>
 
 <div class="grp"><div class="row r3">
-<figure class="fg"><img class="mm" src="img/m1.png" width="321" height="270" loading="lazy" decoding="async" alt=""><img class="scr" src="img/perfis.png" width="300" height="650" loading="lazy" decoding="async" alt="Tela de escolha entre frequentador, pastor e equipe de mídia"><figcaption><b>Quem é você?</b>Frequentador, pastor ou mídia. No protótipo dá para ver os três. No app de verdade, o frequentador entraria direto, sem escolher nada.</figcaption></figure>
-<figure class="fg"><img class="scr" src="img/login.png" width="300" height="650" loading="lazy" decoding="async" alt="Login do frequentador, com Google ou sem conta"><figcaption><b>Entrar</b>Com o Google ou sem conta. Sem conta, o que a pessoa escolhe fica só no aparelho dela.</figcaption></figure>
-<figure class="fg"><img class="scr" src="img/google.png" width="300" height="650" loading="lazy" decoding="async" alt="Tela escura sincronizando as preferências"><figcaption><b>Sincronizando</b>O login com o Google, por enquanto, é simulado.</figcaption></figure>
+<figure class="fg"><img class="mm" src="img/m1.png" width="321" height="270" loading="lazy" decoding="async" alt=""><img class="scr" data-full="img/full/perfis.webp" src="img/perfis.png" width="600" height="1300" loading="lazy" decoding="async" alt="Tela de escolha entre frequentador, pastor e equipe de mídia"><figcaption><b>Quem é você?</b>Frequentador, pastor ou mídia. No protótipo dá para ver os três. No app de verdade, o frequentador entraria direto, sem escolher nada.</figcaption></figure>
+<figure class="fg"><img class="scr" data-full="img/full/login.webp" src="img/login.png" width="600" height="1300" loading="lazy" decoding="async" alt="Login do frequentador, com Google ou sem conta"><figcaption><b>Entrar</b>Com o Google ou sem conta. Sem conta, o que a pessoa escolhe fica só no aparelho dela.</figcaption></figure>
+<figure class="fg"><img class="scr" data-full="img/full/google.webp" src="img/google.png" width="600" height="1300" loading="lazy" decoding="async" alt="Tela escura sincronizando as preferências"><figcaption><b>Sincronizando</b>O login com o Google, por enquanto, é simulado.</figcaption></figure>
 </div></div>
 </div></section>
 
@@ -358,10 +354,10 @@ footer p+p{margin-top:4px;color:#bbb}
 <section class="g" data-t="00:04" data-n="O início do frequentador" id="s4"><div class="w">
 <div class="hd"><span class="mono st">00:04</span><h2>O início do frequentador</h2></div>
 <div class="row r4">
-<figure class="fg"><img class="scr" src="img/home.png" width="300" height="650" loading="lazy" decoding="async" alt="Início: estamos preparando um aviso"><figcaption><b>Preparando um aviso</b>O mascote espera deitado enquanto o app verifica se a transmissão está mesmo no ar, e dá para tocar em “Verificar transmissão” para conferir na hora.</figcaption></figure>
-<figure class="fg"><img class="scr" src="img/espera.png" width="300" height="650" loading="lazy" decoding="async" alt="O mascote de perto com um contador em 00:10"><figcaption><b>A espera de 5 minutos</b>Quando percebe uma transmissão, o app espera cinco minutos e confere se ela continua no ar antes de avisar. Assim ninguém é chamado por causa de um teste de som. Aqui a espera dura 10 segundos, porque ninguém merece esperar cinco minutos numa demonstração.</figcaption></figure>
-<figure class="fg"><img class="scr" src="img/aovivo.png" width="300" height="650" loading="lazy" decoding="async" alt="Início: estamos ao vivo, com botões de entrar e compartilhar"><figcaption><b>Estamos ao vivo</b>O aviso chega com dois botões: entrar na live ou compartilhar o link com alguém.</figcaption></figure>
-<figure class="fg"><img class="scr" src="img/notif.png" width="300" height="650" loading="lazy" decoding="async" alt="Lista de notificações"><figcaption><b>Avisos recentes</b>Os últimos avisos ficam guardados, junto de dicas como fixar o app na tela inicial.</figcaption></figure>
+<figure class="fg"><img class="scr" data-full="img/full/home.webp" src="img/home.png" width="600" height="1300" loading="lazy" decoding="async" alt="Início: estamos preparando um aviso"><figcaption><b>Preparando um aviso</b>O mascote espera deitado enquanto o app verifica se a transmissão está mesmo no ar, e dá para tocar em “Verificar transmissão” para conferir na hora.</figcaption></figure>
+<figure class="fg"><img class="scr" data-full="img/full/espera.webp" src="img/espera.png" width="600" height="1300" loading="lazy" decoding="async" alt="O mascote de perto com um contador em 00:10"><figcaption><b>A espera de 5 minutos</b>Quando percebe uma transmissão, o app espera cinco minutos e confere se ela continua no ar antes de avisar. Assim ninguém é chamado por causa de um teste de som. Aqui a espera dura 10 segundos, porque ninguém merece esperar cinco minutos numa demonstração.</figcaption></figure>
+<figure class="fg"><img class="scr" data-full="img/full/aovivo.webp" src="img/aovivo.png" width="600" height="1300" loading="lazy" decoding="async" alt="Início: estamos ao vivo, com botões de entrar e compartilhar"><figcaption><b>Estamos ao vivo</b>O aviso chega com dois botões: entrar na live ou compartilhar o link com alguém.</figcaption></figure>
+<figure class="fg"><img class="scr" data-full="img/full/notif.webp" src="img/notif.png" width="600" height="1300" loading="lazy" decoding="async" alt="Lista de notificações"><figcaption><b>Avisos recentes</b>Os últimos avisos ficam guardados, junto de dicas como fixar o app na tela inicial.</figcaption></figure>
 </div>
 </div></section>
 
@@ -374,12 +370,12 @@ footer p+p{margin-top:4px;color:#bbb}
 <span><span class="tag prev">PREVISTO</span> só no app de verdade</span>
 </div>
 <ol class="fluxo">
-<li class="passo prev"><span class="num">1</span><div><h3>Sem live</h3><p>O mascote dorme. Não há nada para avisar, então o app fica quieto.</p><span class="tag prev">PREVISTO</span></div><img class="mu" src="img/dorme.png" width="260" height="260" loading="lazy" decoding="async" alt="O mascote deitado, descansando"></li>
-<li class="passo sim"><span class="num">2</span><div><h3>Transmissão detectada</h3><p>A mídia começa a live e o app percebe que há uma transmissão pública no ar. No protótipo, o botão “Verificar transmissão” faz esse papel.</p><span class="tag sim">SIMULADO</span></div><img class="mu" src="img/costas.png" width="184" height="376" loading="lazy" decoding="async" alt="O mascote de costas, atento"></li>
-<li class="passo sim"><span class="num">3</span><div><h3>Espera de cinco minutos</h3><p>O mascote espera. Passado o tempo, o app confere se a live continua no ar e pública. Assim um teste de som não vira aviso. Na demonstração, são 10 segundos.</p><span class="tag sim">SIMULADO</span></div><img class="mu" src="img/pensa.png" width="223" height="359" loading="lazy" decoding="async" alt="O mascote pensativo, esperando"></li>
+<li class="passo prev"><span class="num">1</span><div><h3>Sem live</h3><p>O mascote dorme. Não há nada para avisar, então o app fica quieto.</p><span class="tag prev">PREVISTO</span></div></li>
+<li class="passo sim"><span class="num">2</span><div><h3>Transmissão detectada</h3><p>A mídia começa a live e o app percebe que há uma transmissão pública no ar. No protótipo, o botão “Verificar transmissão” faz esse papel.</p><span class="tag sim">SIMULADO</span></div></li>
+<li class="passo sim"><span class="num">3</span><div><h3>Espera de cinco minutos</h3><p>O mascote espera. Passado o tempo, o app confere se a live continua no ar e pública. Assim um teste de som não vira aviso. Na demonstração, são 10 segundos.</p><span class="tag sim">SIMULADO</span></div></li>
 <li class="passo prev"><span class="num">4</span><div><h3>Quem recebe</h3><p>O aviso respeita as preferências: só chega a quem escolheu aquele culto e não marcou “estou presencialmente”.</p><span class="tag prev">PREVISTO</span></div></li>
-<li class="passo sim"><span class="num">5</span><div><h3>Aviso enviado</h3><p>A notificação chega, o mascote se apresenta e a tela mostra “Estamos ao vivo”, com dois caminhos: entrar na live ou compartilhar o link. O envio real de notificações é simulado.</p><span class="tag sim">SIMULADO</span></div><img class="mu" src="img/apr-e.png" width="283" height="359" loading="lazy" decoding="async" alt="O mascote apresentando com a mão aberta"></li>
-<li class="passo prev"><span class="num">6</span><div><h3>Depois da live</h3><p>Quando a transmissão termina, o botão passa a ser “Ver a gravação” e o mascote volta a dormir. Esperando o próximo culto.</p><span class="tag prev">PREVISTO</span></div><img class="mu" src="img/dorme.png" width="260" height="260" loading="lazy" decoding="async" alt="O mascote deitado, descansando de novo"></li>
+<li class="passo sim"><span class="num">5</span><div><h3>Aviso enviado</h3><p>A notificação chega, o mascote se apresenta e a tela mostra “Estamos ao vivo”, com dois caminhos: entrar na live ou compartilhar o link. O envio real de notificações é simulado.</p><span class="tag sim">SIMULADO</span></div></li>
+<li class="passo prev"><span class="num">6</span><div><h3>Depois da live</h3><p>Quando a transmissão termina, o botão passa a ser “Ver a gravação” e o mascote volta a dormir. Esperando o próximo culto.</p><span class="tag prev">PREVISTO</span></div></li>
 </ol>
 </div></section>
 
@@ -387,19 +383,19 @@ footer p+p{margin-top:4px;color:#bbb}
 <section class="g" data-t="00:02" data-n="O resto do app" id="s2"><div class="w">
 <div class="hd"><span class="mono st">00:02</span><h2>O resto do app</h2></div>
 <div class="grp"><div class="row r3">
-<figure class="fg"><img class="mm" src="img/m2.png" width="254" height="270" loading="lazy" decoding="async" alt=""><img class="scr" src="img/lives.png" width="300" height="650" loading="lazy" decoding="async" alt="Lives anteriores"><figcaption><b>Lives anteriores</b>As últimas três semanas, com um atalho para a playlist do canal. Quem perdeu o começo assiste depois.</figcaption></figure>
-<figure class="fg"><img class="mm" src="img/m1.png" width="321" height="270" loading="lazy" decoding="async" alt=""><img class="scr" src="img/prefs.png" width="300" height="650" loading="lazy" decoding="async" alt="Preferências de cultos"><figcaption><b>Preferências</b>A pessoa escolhe quais cultos quer receber: quarta à noite, domingo de manhã, domingo à noite ou os extras. E tem o “estou presencialmente no culto”, que deixa o aviso quieto por algumas horas.</figcaption></figure>
-<figure class="fg"><img class="mm" src="img/m2.png" width="254" height="270" loading="lazy" decoding="async" alt=""><img class="scr" src="img/perfil.png" width="300" height="650" loading="lazy" decoding="async" alt="Perfil com foto de exemplo"><figcaption><b>Perfil</b>A foto é só um exemplo de como ficaria.</figcaption></figure>
+<figure class="fg"><img class="mm" src="img/m2.png" width="254" height="270" loading="lazy" decoding="async" alt=""><img class="scr" data-full="img/full/lives.webp" src="img/lives.png" width="600" height="1300" loading="lazy" decoding="async" alt="Lives anteriores"><figcaption><b>Lives anteriores</b>As últimas três semanas, com um atalho para a playlist do canal. Quem perdeu o começo assiste depois.</figcaption></figure>
+<figure class="fg"><img class="mm" src="img/m1.png" width="321" height="270" loading="lazy" decoding="async" alt=""><img class="scr" data-full="img/full/prefs.webp" src="img/prefs.png" width="600" height="1300" loading="lazy" decoding="async" alt="Preferências de cultos"><figcaption><b>Preferências</b>A pessoa escolhe quais cultos quer receber: quarta à noite, domingo de manhã, domingo à noite ou os extras. E tem o “estou presencialmente no culto”, que deixa o aviso quieto por algumas horas.</figcaption></figure>
+<figure class="fg"><img class="mm" src="img/m2.png" width="254" height="270" loading="lazy" decoding="async" alt=""><img class="scr" data-full="img/full/perfil.webp" src="img/perfil.png" width="600" height="1300" loading="lazy" decoding="async" alt="Perfil com foto de exemplo"><figcaption><b>Perfil</b>A foto é só um exemplo de como ficaria.</figcaption></figure>
 </div></div>
 
 <div class="grp">
 <h3>Pastor e mídia</h3>
 <div class="tx"><p>Os dois entram com usuário e senha. No protótipo, essas áreas ainda são um aviso de “em breve”, e a da mídia foi pensada para computador. Quem esquece a senha vê um aviso para falar com o desenvolvedor.</p></div>
 <div class="row r4">
-<figure class="fg"><img class="scr" src="img/pastor.png" width="300" height="650" loading="lazy" decoding="async" alt="Login do pastor"><figcaption>Login do pastor</figcaption></figure>
-<figure class="fg"><img class="scr" src="img/avpastor.png" width="300" height="650" loading="lazy" decoding="async" alt="Aviso: área pastoral em breve"><figcaption>Área pastoral, em breve</figcaption></figure>
-<figure class="fg"><img class="scr" src="img/avmidia.png" width="300" height="650" loading="lazy" decoding="async" alt="Aviso: disponível para computador"><figcaption>Área da mídia, só no computador</figcaption></figure>
-<figure class="fg"><img class="scr" src="img/senha.png" width="300" height="650" loading="lazy" decoding="async" alt="Tela de esqueci a senha"><figcaption>Esqueci a senha</figcaption></figure>
+<figure class="fg"><img class="scr" data-full="img/full/pastor.webp" src="img/pastor.png" width="600" height="1300" loading="lazy" decoding="async" alt="Login do pastor"><figcaption>Login do pastor</figcaption></figure>
+<figure class="fg"><img class="scr" data-full="img/full/avpastor.webp" src="img/avpastor.png" width="600" height="1300" loading="lazy" decoding="async" alt="Aviso: área pastoral em breve"><figcaption>Área pastoral, em breve</figcaption></figure>
+<figure class="fg"><img class="scr" data-full="img/full/avmidia.webp" src="img/avmidia.png" width="600" height="1300" loading="lazy" decoding="async" alt="Aviso: disponível para computador"><figcaption>Área da mídia, só no computador</figcaption></figure>
+<figure class="fg"><img class="scr" data-full="img/full/senha.webp" src="img/senha.png" width="600" height="1300" loading="lazy" decoding="async" alt="Tela de esqueci a senha"><figcaption>Esqueci a senha</figcaption></figure>
 </div></div>
 </div></section>
 
@@ -500,13 +496,13 @@ imgs.forEach(function(im,i){
  var b=document.createElement('button');b.type='button';b.className='lupa';b.innerHTML=ico;b.setAttribute('aria-label','Ampliar imagem: '+im.alt);b.addEventListener('click',function(){abre(i,b)});w.appendChild(b)});
 var lb=document.getElementById('lb'),li=document.getElementById('lbi'),lbs=document.getElementById('lbs'),lc=document.getElementById('lbc'),lt=document.getElementById('lbt'),
  ba=document.getElementById('lba'),bb=document.getElementById('lbb'),bm=document.getElementById('lbm'),bp=document.getElementById('lbp'),bx=document.getElementById('lbx');
-var idx=0,sc=1,tx=0,ty=0,ret=null,sy=0,aberto=false,MAX=5;
+var idx=0,sc=1,tx=0,ty=0,ret=null,sy=0,aberto=false,MAX=4;
 function aplica(){li.style.transform='translate('+tx+'px,'+ty+'px) scale('+sc+')';lbs.classList.toggle('z',sc>1);bm.disabled=sc<=1;bp.disabled=sc>=MAX}
 function limita(){var r=li.getBoundingClientRect(),w=li.offsetWidth*sc,h=li.offsetHeight*sc,sw=lbs.clientWidth,sh=lbs.clientHeight,mx=Math.max(0,(w-sw)/2),my=Math.max(0,(h-sh)/2);
  tx=Math.max(-mx,Math.min(mx,tx));ty=Math.max(-my,Math.min(my,ty))}
 function zoom(n){sc=Math.max(1,Math.min(MAX,n));if(sc===1){tx=0;ty=0}limita();aplica()}
-function mostra(i){idx=(i+imgs.length)%imgs.length;var im=imgs[idx];sc=1;tx=0;ty=0;li.src=im.currentSrc||im.src;li.alt=im.alt;lc.textContent=(idx+1)+' / '+imgs.length;
- var f=im.closest('figure'),c=f&&f.querySelector('figcaption'),t=c?c.textContent:im.alt;lt.textContent=t.length>160?im.alt:t;aplica()}
+function mostra(i){idx=(i+imgs.length)%imgs.length;var im=imgs[idx];sc=1;tx=0;ty=0;var th=im.currentSrc||im.src,fu=im.dataset.full;li.src=th;li.alt=im.alt;if(fu){var pr=new Image();pr.onload=function(){if(aberto&&imgs[idx]===im)li.src=fu};pr.src=fu}lc.textContent=(idx+1)+' / '+imgs.length;
+ var f=im.closest('figure'),c=f&&f.querySelector('figcaption'),bb2=c&&c.querySelector('b'),t=c?(bb2?bb2.textContent+'. '+c.textContent.slice(bb2.textContent.length):c.textContent):im.alt;lt.textContent=t.length>160?(bb2?bb2.textContent+'. '+im.alt:im.alt):t;aplica()}
 function abre(i,origem){ret=origem;sy=window.pageYOffset;
  document.body.style.cssText+=';position:fixed;top:-'+sy+'px;left:0;right:0;width:100%';
  lb.classList.add('on');lb.setAttribute('aria-hidden','false');aberto=true;mostra(i);bx.focus()}
