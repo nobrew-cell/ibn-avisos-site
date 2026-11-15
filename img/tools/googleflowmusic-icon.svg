@@ -1,0 +1,32 @@
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_32_9715)">
+<rect width="200" height="200" fill="black"/>
+<g filter="url(#filter0_f_32_9715)">
+<path d="M111.487 91.5961C117.747 95.0056 117.747 103.994 111.487 107.404L33.5544 149.845C27.5572 153.111 20.25 148.77 20.25 141.941L20.25 57.0587C20.25 50.2298 27.5572 45.8888 33.5544 49.1548L111.487 91.5961Z" fill="white"/>
+</g>
+<g filter="url(#filter1_fg_32_9715)">
+<g clip-path="url(#paint0_angular_32_9715_clip_path)" data-figma-skip-parse="true"><g transform="matrix(0.000500002 0.0665 -0.0676519 0.000508664 124.5 99.5)"><foreignObject x="-1064.32" y="-1064.32" width="2128.65" height="2128.65"><div xmlns="http://www.w3.org/1999/xhtml" style="background:conic-gradient(from 90deg,rgba(252, 119, 84, 1) 0deg,rgba(252, 229, 115, 1) 69.2506deg,rgba(132, 182, 255, 1) 138.487deg,rgba(111, 226, 115, 1) 360deg);height:100%;width:100%;opacity:0.92"></div></foreignObject></g></g><path d="M180.487 91.5961C186.747 95.0056 186.747 103.994 180.487 107.404L102.554 149.845C96.5572 153.111 89.25 148.77 89.25 141.941L89.25 57.0587C89.25 50.2298 96.5572 45.8888 102.554 49.1548L180.487 91.5961Z" data-figma-gradient-fill="{&#34;type&#34;:&#34;GRADIENT_ANGULAR&#34;,&#34;stops&#34;:[{&#34;color&#34;:{&#34;r&#34;:0.98970901966094971,&#34;g&#34;:0.47000205516815186,&#34;b&#34;:0.33029577136039734,&#34;a&#34;:1.0},&#34;position&#34;:0.0},{&#34;color&#34;:{&#34;r&#34;:0.98970901966094971,&#34;g&#34;:0.90045732259750366,&#34;b&#34;:0.45419871807098389,&#34;a&#34;:1.0},&#34;position&#34;:0.19236287474632263},{&#34;color&#34;:{&#34;r&#34;:0.51879584789276123,&#34;g&#34;:0.71693873405456543,&#34;b&#34;:1.0,&#34;a&#34;:1.0},&#34;position&#34;:0.38468581438064575},{&#34;color&#34;:{&#34;r&#34;:0.43568268418312073,&#34;g&#34;:0.88629013299942017,&#34;b&#34;:0.45420080423355103,&#34;a&#34;:1.0},&#34;position&#34;:1.0}],&#34;transform&#34;:{&#34;m00&#34;:1.0000045299530029,&#34;m01&#34;:-135.30378723144531,&#34;m02&#34;:191.65190124511719,&#34;m10&#34;:133.0,&#34;m11&#34;:1.0173279047012329,&#34;m12&#34;:32.491336822509766},&#34;opacity&#34;:0.92000001668930054,&#34;blendMode&#34;:&#34;NORMAL&#34;,&#34;stopsVar&#34;:[{&#34;color&#34;:{&#34;r&#34;:0.98970901966094971,&#34;g&#34;:0.47000205516815186,&#34;b&#34;:0.33029577136039734,&#34;a&#34;:1.0},&#34;position&#34;:0.0},{&#34;color&#34;:{&#34;r&#34;:0.98970901966094971,&#34;g&#34;:0.90045732259750366,&#34;b&#34;:0.45419871807098389,&#34;a&#34;:1.0},&#34;position&#34;:0.19236287474632263},{&#34;color&#34;:{&#34;r&#34;:0.51879584789276123,&#34;g&#34;:0.71693873405456543,&#34;b&#34;:1.0,&#34;a&#34;:1.0},&#34;position&#34;:0.38468581438064575},{&#34;color&#34;:{&#34;r&#34;:0.43568268418312073,&#34;g&#34;:0.88629013299942017,&#34;b&#34;:0.45420080423355103,&#34;a&#34;:1.0},&#34;position&#34;:1.0}],&#34;visible&#34;:true}"/>
+</g>
+<path d="M111.487 91.5961C117.747 95.0056 117.747 103.994 111.487 107.404L33.5544 149.845C27.5572 153.111 20.25 148.77 20.25 141.941L20.25 57.0587C20.25 50.2298 27.5572 45.8888 33.5544 49.1548L111.487 91.5961Z" fill="white"/>
+</g>
+<defs>
+<filter id="filter0_f_32_9715" x="-20.35" y="7.44602" width="177.132" height="184.108" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="0" result="effect1_foregroundBlur_32_9715"/>
+</filter>
+<filter id="filter1_fg_32_9715" x="48.65" y="7.44602" width="177.132" height="184.108" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="0" result="effect1_foregroundBlur_32_9715"/>
+<feTurbulence type="fractalNoise" baseFrequency="0.032362461090087891 0.032362461090087891" numOctaves="3" seed="4123" />
+<feDisplacementMap in="effect1_foregroundBlur_32_9715" scale="2.5999999046325684" xChannelSelector="R" yChannelSelector="G" result="displacedImage" width="100%" height="100%" />
+<feMerge result="effect2_texture_32_9715">
+<feMergeNode in="displacedImage"/>
+</feMerge>
+</filter>
+<clipPath id="paint0_angular_32_9715_clip_path"><path d="M180.487 91.5961C186.747 95.0056 186.747 103.994 180.487 107.404L102.554 149.845C96.5572 153.111 89.25 148.77 89.25 141.941L89.25 57.0587C89.25 50.2298 96.5572 45.8888 102.554 49.1548L180.487 91.5961Z"/></clipPath><clipPath id="clip0_32_9715">
+<rect width="200" height="200" fill="white"/>
+</clipPath>
+</defs>
+</svg>
