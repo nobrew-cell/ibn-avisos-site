@@ -62,7 +62,7 @@ footer p+p{margin-top:6px;color:#bbb}
 .cb.on .b,.tg.on .b{opacity:1}
 .cb.on .a,.tg.on .a{opacity:0}
 /* espera: contador que anda e a mão que aponta para o visor */
-#dg{left:42.236px;top:389.361px;width:367px;height:135px;background:url(img/ui/digits.webp) no-repeat;background-size:100% 1100%;background-position:0 calc(var(--r)*10%);transform-origin:172.8px 50.6px;transform:scale(1.16);opacity:0;transition:opacity .12s}
+#dg{left:42.236px;top:418.5px;width:367px;height:135px;background:url(img/ui/digits.webp) no-repeat;background-size:100% 1100%;background-position:0 calc(var(--r)*10%);transform-origin:172.8px 50.6px;transform:scale(1.16);opacity:0;transition:opacity .12s}
 #hd{left:-100px;top:500px;width:400px;height:440px;opacity:0;transform:translate(-64px,48px);transition:opacity .12s}
 .phone.esp #dg,.phone.esp #hd{opacity:1;transition:opacity .3s .15s}
 .phone.esp #hd{animation:aponta 1s ease-in-out infinite}
@@ -119,7 +119,7 @@ footer p+p{margin-top:6px;color:#bbb}
  .w{padding:0 16px}
  .cab{padding:36px 0 34px}
  .lab{padding:32px 0 54px}
- .phone{border-radius:40px;box-shadow:6px 6px 0 var(--ink)}
+ .phone{width:min(100%,390px,40vh);width:min(100%,390px,40svh);border-radius:40px;box-shadow:6px 6px 0 var(--ink)}
  .pt{bottom:92px;font-size:12px}
  .card{padding:16px 16px 18px}
  .video{box-shadow:5px 5px 0 var(--red)}

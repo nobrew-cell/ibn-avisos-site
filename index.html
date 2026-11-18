@@ -68,7 +68,7 @@ h2{font-size:clamp(28px,4.6vw,44px)}
 .grp .tx{margin-bottom:26px}
 .fg{margin:0;width:100%}
 /* carrossel */
-.car{--sw:228px}
+.car{--sw:clamp(120px,31vh,228px);--sw:clamp(120px,31svh,228px)}
 .trk{display:flex;align-items:flex-start;gap:26px;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 calc(var(--gut) * -1);padding:6px var(--gut) 14px;scroll-padding:0 var(--gut);scrollbar-width:none;overscroll-behavior-x:contain;position:relative;-webkit-overflow-scrolling:touch}
 .trk::-webkit-scrollbar{display:none}
 .trk>.fg{flex:0 0 var(--sw);width:var(--sw);scroll-snap-align:start}
@@ -217,7 +217,7 @@ footer p+p{margin-top:4px;color:#bbb}
  .desc{font-size:17.5px}
  .acoes{flex-direction:column;align-items:stretch;gap:12px}
  .btn.p{font-size:17px}
- .car{--sw:min(66vw,260px)}
+ .car{--sw:clamp(120px,min(60vw,31vh),240px);--sw:clamp(120px,min(60vw,31svh),240px)}
  .trk{gap:18px}
  .voto{padding:20px 12px;margin-top:185px}.voto .mm{width:110px}.callout{padding:26px 20px}
  #men{min-width:220px}
