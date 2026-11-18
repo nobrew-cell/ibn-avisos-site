@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Experimente o protótipo — IBN Avisos</title>
+<meta name="description" content="As telas do protótipo do IBN Avisos, navegáveis no navegador. Uma simulação: nenhuma notificação de verdade é enviada.">
+<meta name="theme-color" content="#141414">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:title" content="Experimente o protótipo — IBN Avisos">
+<meta property="og:description" content="As telas do protótipo do IBN Avisos, navegáveis no navegador.">
+<link rel="icon" href="img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@125,800&family=IBM+Plex+Mono:wght@500&family=Source+Serif+4:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="paginas.css">
+</head>
+<body>
+
+<div class="topo"><div class="w">
+<a class="voltar" href="index.html">← Voltar ao site</a>
+<span class="marca">IBN <span>Avisos</span></span>
+</div></div>
+
+<header class="cab"><div class="w">
+<span class="mono st">protótipo navegável</span>
+<h1>Experimente o protótipo</h1>
+<p>As telas do Figma, ligadas umas às outras. Toque nas áreas destacadas.</p>
+<div class="aviso"><b>É só uma simulação.</b> Nada é enviado de verdade, o login com o Google é fictício e a espera de cinco minutos vira 10 segundos.</div>
+</div></header>
+
+<main class="lab"><div class="w">
+
+<div class="col-phone">
+<div class="phone dest" id="ph" aria-label="Simulador do aplicativo">
+<img class="l on" id="la" alt="" draggable="false">
+<img class="l" id="lb2" alt="" draggable="false">
+<video class="l v" id="vd" muted playsinline preload="auto" aria-hidden="true"></video>
+<div id="hs"></div>
+<div id="ui" aria-hidden="true"><div id="dg"></div><img id="hd" src="img/ui/hand.webp" alt="" draggable="false"><div id="ov"></div></div>
+<div class="pt" id="pt" role="status" aria-live="polite"></div>
+</div>
+</div>
+
+<div class="painel">
+<section class="card" aria-live="polite">
+<span class="mono" style="color:var(--red)" id="cn">TELA 1</span>
+<h2 id="ct" style="margin-top:6px">Tela inicial do celular</h2>
+<p id="cd"></p>
+<div class="tempo" id="tp"><div class="barra"><i id="tb"></i></div><span class="mono" id="tt"></span><button type="button" class="btn s" id="pula">Pular a espera</button></div>
+</section>
+
+<section class="card">
+<div class="ctl">
+<button type="button" class="btn s" id="rst">Recomeçar do início</button>
+</div>
+<label class="chk-d"><input type="checkbox" id="dst" checked> Destacar onde tocar</label>
+</section>
+</div>
+
+</div></main>
+
+<footer><div class="w">
+<p><a href="index.html">Voltar ao site de apresentação</a> · <a href="anuncio.html">Assistir ao anúncio</a></p>
+<p>IBN Avisos · protótipo de extensão universitária</p>
+</div></footer>
+
+<noscript><div class="w" style="padding:30px 0"><div class="aviso">Esta página precisa de JavaScript para navegar entre as telas. As telas estão na <a href="index.html">página principal</a>.</div></div></noscript>
+
+<script>
+(function(){
+var W=430,H=932,P='img/full/';
+var BELL=[360,55,420,112],NH=[24,812,152,888],NY=[152,812,280,888],NC=[280,812,406,888],VOLTAR=[22,85,112,132],VOLTAR2=[22,115,112,158],GREET=[25,120,405,195],AVAT=[28,55,82,108];
+var NAV=function(a){var n=[{r:NH,to:'home',l:'Início'},{r:NY,to:'lives',l:'Lives anteriores'},{r:NC,to:'prefs',l:'Preferências'}];return a.concat(n)};
+var T_FALTA='Simulado: no app de verdade isto ainda não está ligado.';
+var S={
+ iphone:{img:'iphone',nome:'Tela inicial do celular',dica:'Toque no ícone do IBN Avisos.',
+  hot:[{r:[100,392,178,482],to:'splash',l:'Abrir o IBN Avisos',main:1}]},
+ splash:{img:'splash',vid:'splash',nome:'Abertura',dica:'Carregando…',auto:[2800,'loading'],hot:[]},
+ loading:{img:'loading',nome:'Carregando',dica:'Só um instante…',auto:[900,'ap1'],hot:[]},
+ ap1:{img:'ap1',nome:'Boas-vindas, 1 de 3',dica:'Toque em Continuar.',hot:[{r:[25,698,405,757],to:'ap2',l:'Continuar',main:1}]},
+ ap2:{img:'ap2',nome:'Boas-vindas, 2 de 3',dica:'Toque em Continuar.',hot:[{r:VOLTAR2,to:'ap1',l:'Voltar'},{r:[25,698,405,757],to:'ap3',l:'Continuar',main:1}]},
+ ap3:{img:'ap3',nome:'Boas-vindas, 3 de 3',dica:'Toque em Vamos começar.',hot:[{r:VOLTAR2,to:'ap2',l:'Voltar'},{r:[25,698,405,757],to:'perfis',l:'Vamos começar',main:1}]},
+ perfis:{img:'perfis',nome:'Quem é você?',dica:'Escolha Frequentador.',
+  hot:[{r:[26,312,405,430],to:'login',l:'Frequentador',main:1},{r:[26,452,405,568],to:'pastor',l:'Pastor'},{r:[26,588,405,705],to:'midia',l:'Equipe de Mídia'}]},
+ login:{img:'login',nome:'Acesso do frequentador',dica:'Entre com o Google ou sem conta.',
+  hot:[{r:VOLTAR,to:'perfis',l:'Voltar'},{r:[25,383,405,443],to:'google',l:'Continuar com o Google',main:1},{r:[25,527,405,587],to:'home',l:'Entrar sem conta'}]},
+ google:{img:'google',vid:'google',nome:'Sincronizando',dica:'Sincronizando suas preferências…',auto:[5000,'splash2'],hot:[]},
+ splash2:{img:'splash2',vid:'splash',nome:'Abertura',dica:'Quase lá…',auto:[2800,'home'],hot:[]},
+ pastor:{img:'pastor',nome:'Acesso do pastor',dica:'Toque em Entrar.',
+  hot:[{r:VOLTAR,to:'perfis',l:'Voltar'},{r:[325,178,405,233],to:'midia',l:'Trocar para Mídia'},{r:[25,528,405,586],to:'avpastor',l:'Entrar',main:1},{r:[90,605,245,640],to:'senha',l:'Esqueci a senha'}]},
+ midia:{img:'midia',nome:'Acesso da equipe de mídia',dica:'Toque em Entrar.',
+  hot:[{r:VOLTAR,to:'perfis',l:'Voltar'},{r:[325,178,405,233],to:'pastor',l:'Trocar para Pastor'},{r:[25,528,405,586],to:'avmidia',l:'Entrar',main:1},{r:[90,605,245,640],to:'senha',l:'Esqueci a senha'}]},
+ senha:{img:'senha',vid:'senha',loop:1,nome:'Esqueceu a senha?',dica:'A recuperação é por contato humano.',
+  hot:[{r:VOLTAR,act:'back',l:'Voltar'},{r:[38,553,212,598],act:'toast',m:'Simulado: copiaria o e-mail de suporte.',l:'Copiar e-mail'},{r:[218,553,392,598],act:'toast',m:'Simulado: abriria o seu app de e-mail.',l:'Enviar e-mail'}]},
+ avpastor:{img:'avpastor',nome:'Área pastoral em breve',dica:'Volte à seleção de perfil.',
+  hot:[{r:VOLTAR,to:'perfis',l:'Voltar'},{r:[25,630,405,690],to:'perfis',l:'Voltar à seleção de perfil',main:1}]},
+ avmidia:{img:'avmidia',nome:'Mídia: disponível para computador',dica:'Volte à seleção de perfil.',
+  hot:[{r:VOLTAR,to:'perfis',l:'Voltar'},{r:[25,630,405,690],to:'perfis',l:'Voltar à seleção de perfil',main:1}]},
+ home:{img:'home',nome:'Início do frequentador',dica:'Toque em Verificar transmissão.',
+  hot:NAV([{r:AVAT,to:'perfil',l:'Perfil'},{r:BELL,to:'notif',l:'Notificações'},{r:GREET,to:'perfil',l:'Abrir perfil'},{r:[25,393,405,435],to:'carreg',l:'Verificar transmissão',main:1},{r:[335,475,410,505],to:'notif',l:'Ver todas as notificações'}])},
+ carreg:{img:'carreg',vid:'carregamento',nome:'Verificando a transmissão',dica:'Verificando…',auto:[5000,'pausa'],hot:[]},
+ pausa:{img:'pausa',nome:'Live detectada',dica:'Live detectada.',auto:[800,'espera'],hot:[]},
+ espera:{img:'espera_base',nome:'Esperando para confirmar',dica:'Esperando a confirmação…',auto:[10000,'aovivo'],skip:1,hot:[]},
+ aovivo:{img:'aovivo',nome:'Estamos ao vivo',dica:'Entrar na live ou compartilhar.',
+  hot:NAV([{r:BELL,to:'notif',l:'Notificações'},{r:GREET,to:'perfil',l:'Abrir perfil'},{r:[22,395,244,436],act:'toast',m:'Simulado: no app, abriria a transmissão no YouTube.',l:'Entrar na live',main:1},{r:[255,395,405,436],act:'toast',m:'Simulado: no app, abriria o menu de compartilhar.',l:'Compartilhar'}])},
+ notif:{img:'notif',nome:'Notificações',dica:'Toque no sino para voltar ao início.',
+  hot:NAV([{r:BELL,to:'home',l:'Voltar ao início',main:1}])},
+ lives:{img:'lives',nome:'Lives anteriores',dica:'Quem perdeu o começo assiste depois.',
+  hot:NAV([{r:BELL,to:'notif',l:'Notificações'},{r:[250,265,405,293],act:'toast',m:'Simulado: abriria a live no YouTube.',l:'Assistir, primeiro vídeo'},{r:[250,406,405,434],act:'toast',m:'Simulado: abriria a live no YouTube.',l:'Assistir, segundo vídeo'},{r:[250,550,405,578],act:'toast',m:'Simulado: abriria a live no YouTube.',l:'Assistir, terceiro vídeo'},{r:[25,625,405,688],act:'toast',m:'Simulado: abriria as playlists do canal.',l:'Ver playlists do canal'}])},
+ prefs:{img:'prefs_base',nome:'Preferências',dica:'Escolha os cultos e o modo presencial.',
+  hot:NAV([{r:BELL,to:'notif',l:'Notificações'},{r:[25,195,405,267],act:'c0',l:'Quarta-feira à noite'},{r:[25,287,405,360],act:'c1',l:'Domingo de manhã'},{r:[25,380,405,453],act:'c2',l:'Domingo à noite'},{r:[25,473,405,546],act:'c3',l:'Cultos extras'},{r:[25,573,405,670],act:'sw',l:'Estou presencialmente no culto'},{r:[25,692,405,731],to:'perfil',l:'Ver meu perfil'}])},
+ perfil:{img:'perfil',nome:'Perfil',dica:'A foto é só um exemplo.',
+  hot:NAV([{r:BELL,to:'notif',l:'Notificações'},{r:[244,255,278,292],act:'toast',m:T_FALTA,l:'Editar foto'}])}
+};
+var ORDER=['iphone','splash','loading','ap1','ap2','ap3','perfis','login','google','splash2','pastor','midia','senha','avpastor','avmidia','home','carreg','pausa','espera','aovivo','notif','lives','prefs','perfil'];
+var pref={c:[true,true,true,false],sw:false};
+var cur=null,hist=[],tAuto=null,tTick=null,tToast=null,top=0;
+var $=function(i){return document.getElementById(i)};
+var ph=$('ph'),hsEl=$('hs'),ovEl=$('ov'),lay=[$('la'),$('lb2')],pt=$('pt');
+
+function pc(r){return 'left:'+(r[0]/W*100)+'%;top:'+(r[1]/H*100)+'%;width:'+((r[2]-r[0])/W*100)+'%;height:'+((r[3]-r[1])/H*100)+'%'}
+function src(id){return P+S[id].img+'.webp'}
+function pre(id){if(S[id]){var i=new Image();i.src=src(id)}}
+function show(id){
+ var s=src(id),a=lay[top],b=lay[1-top];
+ if(a.getAttribute('src')===s)return;
+ b.onload=function(){b.classList.add('on');a.classList.remove('on');top=1-top};
+ b.src=s;
+}
+var vd=$('vd');
+function vid(n,loop){
+ vd.onplaying=null;
+ if(!n){vd.classList.remove('on');vd.pause();return}
+ vd.classList.remove('on');vd.loop=!!loop;
+ vd.onplaying=function(){vd.classList.add('on')};
+ vd.src='video/'+n+'.webm';
+ var pr=vd.play();if(pr&&pr.catch)pr.catch(function(){});
+}
+function fit(){ph.style.setProperty('--k',ph.clientWidth/430)}
+window.addEventListener('resize',fit);fit();
+function toast(m){pt.textContent=m;pt.classList.add('on');clearTimeout(tToast);tToast=setTimeout(function(){pt.classList.remove('on')},2600)}
+var YS=[212,305,398,491];
+function ovs(){
+ ovEl.innerHTML='';
+ if(cur!=='prefs')return;
+ for(var i=0;i<4;i++){var d=document.createElement('div');d.className='cb'+(pref.c[i]?' on':'');d.style.left='42px';d.style.top=(YS[i]-4)+'px';d.innerHTML='<i class="a"></i><i class="b"></i>';d.dataset.i=i;ovEl.appendChild(d)}
+ var t=document.createElement('div');t.className='tg'+(pref.sw?' on':'');t.style.left='326px';t.style.top='601px';t.innerHTML='<i class="a"></i><i class="b"></i>';ovEl.appendChild(t);
+}
+function ovUpd(){
+ [].forEach.call(ovEl.querySelectorAll('.cb'),function(d){d.classList.toggle('on',!!pref.c[+d.dataset.i])});
+ var t=ovEl.querySelector('.tg');if(t)t.classList.toggle('on',!!pref.sw);
+}
+function act(h){
+ if(h.act==='back'){var p=hist.pop();go(p||'perfis','back');return}
+ if(h.act==='toast'){toast(h.m);return}
+ if(h.act&&h.act.charAt(0)==='c'){var i=+h.act.charAt(1);pref.c[i]=!pref.c[i];ovUpd();return}
+ if(h.act==='sw'){pref.sw=!pref.sw;ovUpd();toast(pref.sw?'Modo presencial ligado: os avisos ficam quietos por algumas horas.':'Modo presencial desligado.');return}
+ if(h.to)go(h.to,'user');
+}
+function stopTimers(){clearTimeout(tAuto);clearInterval(tTick);tAuto=tTick=null;$('tp').classList.remove('on')}
+function go(id,how){
+ if(!S[id])return;
+ var prev=cur;
+ stopTimers();
+ if(how==='user'&&prev)hist.push(prev);
+ if(how==='jump')hist=[];
+ cur=id;var s=S[id];
+ show(id);
+ ph.classList.toggle('esp',id==='espera');ph.style.setProperty('--r',0);
+ hsEl.innerHTML='';
+ s.hot.forEach(function(h){
+  var b=document.createElement('button');b.type='button';b.className='hs'+(h.main?' main':'');b.setAttribute('style',pc(h.r));b.setAttribute('aria-label',h.l);
+  b.addEventListener('click',function(){act(h)});hsEl.appendChild(b);
+ });
+ ovs();
+ var n=ORDER.indexOf(id)+1;
+  $('cn').textContent='TELA '+n+' DE '+ORDER.length;$('ct').textContent=s.nome;$('cd').textContent=s.dica||'';
+ vid(s.vid,s.loop);
+ s.hot.forEach(function(h){if(h.to)pre(h.to)});
+ if(s.auto){
+  pre(s.auto[1]);
+  var t0=Date.now(),ms=s.auto[0],tp=$('tp');
+  if(s.skip){
+   tp.classList.add('on');$('pula').style.display='inline-flex';
+   tTick=setInterval(function(){var el=Date.now()-t0,r=Math.max(0,Math.ceil((ms-el)/1000));$('tb').style.width=Math.min(100,el/ms*100)+'%';ph.style.setProperty('--r',Math.min(10,Math.floor(el/1000)));$('tt').textContent=(s.skip?'Esperando… ':'Avança em ')+r+' s'},120);
+  }
+  tAuto=setTimeout(function(){go(s.auto[1],'auto')},ms);
+ }
+}
+$('pula').addEventListener('click',function(){var s=S[cur];if(s&&s.auto)go(s.auto[1],'auto')});
+$('rst').addEventListener('click',function(){pref={c:[true,true,true,false],sw:false};go('iphone','jump')});
+$('dst').addEventListener('change',function(){ph.classList.toggle('dest',this.checked)});
+var h0=(location.hash||'').replace('#','');
+go(S[h0]?h0:'iphone','jump');
+})();
+</script>
+</body>
+</html>

@@ -19,7 +19,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@125,800&family=IBM+Plex+Mono:wght@500&family=Orbitron:wght@800&family=Source+Serif+4:wght@400;600&display=swap" rel="stylesheet">
 <style>
-:root{--red:#ff0931;--ink:#141414;--gold:#e5ae45;--cinza:#f5f5f5;--sec:76px;--grp:100px}
+:root{--red:#ff0931;--ink:#141414;--gold:#e5ae45;--cinza:#f5f5f5;--sec:76px;--grp:80px;--gut:22px}
 *{box-sizing:border-box;margin:0}
 html{scroll-behavior:smooth}
 body{background:#fff;color:var(--ink);font:19px/1.6 "Source Serif 4",Georgia,serif;text-align:center;overflow-x:hidden}
@@ -65,19 +65,32 @@ h2{font-size:clamp(28px,4.6vw,44px)}
 .grp{margin-top:var(--grp)}
 .grp:first-of-type{margin-top:0}
 .grp h3{font-size:24px;margin-bottom:12px}
-.grp .tx{margin-bottom:34px}
-.row{display:grid;gap:34px;justify-content:center;align-items:end}
-.r2{grid-template-columns:repeat(2,minmax(0,290px))}
-.r3{grid-template-columns:repeat(3,minmax(0,290px))}
-.r4{grid-template-columns:repeat(4,minmax(0,250px));gap:26px}
-.fg{margin:0 auto;width:100%}
+.grp .tx{margin-bottom:26px}
+.fg{margin:0;width:100%}
+/* carrossel */
+.car{--sw:228px}
+.trk{display:flex;align-items:flex-start;gap:26px;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 calc(var(--gut) * -1);padding:6px var(--gut) 14px;scroll-padding:0 var(--gut);scrollbar-width:none;overscroll-behavior-x:contain;position:relative;-webkit-overflow-scrolling:touch}
+.trk::-webkit-scrollbar{display:none}
+.trk>.fg{flex:0 0 var(--sw);width:var(--sw);scroll-snap-align:start}
+.trk>.fg:first-child{margin-left:auto}
+.trk>.fg:last-child{margin-right:auto}
+.trk:focus-visible{outline:3px solid var(--red);outline-offset:-3px}
+.ctl{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:10px}
+.ar{width:46px;height:46px;border:3px solid var(--ink);background:#fff;color:var(--ink);font:800 22px/1 Archivo,sans-serif;cursor:pointer;display:grid;place-items:center;padding:0 0 3px;box-shadow:3px 3px 0 var(--ink)}
+.ar:hover:not(:disabled){background:var(--ink);color:#fff}
+.ar:disabled{opacity:.3;cursor:default;box-shadow:none}
+.dts{display:flex;gap:9px;align-items:center}
+.dts button{position:relative;width:12px;height:12px;border-radius:50%;border:2px solid var(--ink);background:#fff;padding:0;cursor:pointer}
+.dts button::after{content:"";position:absolute;inset:-10px -5px}
+.dts button.on{background:var(--red)}
+.car.fit .ctl{display:none}
 .scr{width:100%;border:2px solid var(--ink);border-radius:26px;background:#fff}
 .zw{position:relative}
 .lupa{position:absolute;top:12px;right:12px;width:36px;height:36px;padding:0;display:grid;place-items:center;background:#fff;color:var(--ink);border:2px solid var(--ink);border-radius:50%;cursor:zoom-in;box-shadow:2px 2px 0 rgba(0,0,0,.25)}
 .lupa::after{content:"";position:absolute;inset:-4px}
 .lupa:hover{background:var(--ink);color:#fff}
 .lupa svg{width:18px;height:18px}
-.mm{position:relative;z-index:1;display:block;width:56%;margin:0 auto -3px}
+.mm{position:relative;z-index:1;display:block;width:56%;height:auto;margin:0 auto -3px}
 figcaption{margin-top:16px;font-size:16.5px;line-height:1.45}
 figcaption b{display:block;font:800 17px/1.2 Archivo,sans-serif;font-stretch:125%;letter-spacing:-.01em;margin-bottom:6px}
 .lista{max-width:640px;margin:24px auto 0;padding:0;list-style:none;border-top:2px solid var(--ink);text-align:left}
@@ -103,6 +116,12 @@ figcaption b{display:block;font:800 17px/1.2 Archivo,sans-serif;font-stretch:125
 .q .n{color:var(--red);margin-bottom:10px;display:block}
 .q h3{font-size:22px;margin-bottom:10px}
 .q p{font-size:18px;line-height:1.45}
+.why{max-width:900px;margin:34px auto 22px;background:#fff;border:3px solid var(--ink);box-shadow:7px 7px 0 var(--red);padding:26px 26px 28px;text-align:left}
+.why .mono{color:var(--red);letter-spacing:.06em;display:block;margin-bottom:10px}
+.why h3{font-size:clamp(21px,3vw,26px);margin-bottom:14px}
+.why ol{margin:12px 0 0 1.2em;padding:0}
+.why li{margin-top:12px}
+.why li::marker{color:var(--red);font-weight:700}
 .zap{max-width:900px;margin:26px auto 0;background:#fff;color:var(--ink);text-align:left;padding:26px 26px 28px;border:3px solid #1f9d3b;box-shadow:7px 7px 0 #45d354;display:grid;grid-template-columns:84px 1fr;gap:22px 26px;align-items:start}
 .zap .zi{width:84px;height:84px;border:3px solid #1f9d3b;border-radius:20px;overflow:hidden;background:#45d354}
 .zap .zi img{width:100%;height:100%}
@@ -184,12 +203,12 @@ footer p+p{margin-top:4px;color:#bbb}
 @media(max-width:820px){
  .hero{grid-template-columns:1fr;grid-template-areas:"titulo" "pair" "ficha";gap:34px}
  .pair{max-width:420px;margin:0 auto}
- .r3,.r4{grid-template-columns:repeat(2,minmax(0,260px))}
  #rel svg{width:96px}
  .dec,.dois{grid-template-columns:1fr}
 }
 @media(max-width:520px){
- :root{--sec:54px;--grp:70px}
+ .why{padding:20px 18px 22px;box-shadow:5px 5px 0 var(--red)}
+ :root{--sec:54px;--grp:56px;--gut:18px}
  body{font-size:18px}
  .hero{padding:84px 18px 54px;gap:28px}
  .w{padding:0 18px}
@@ -197,8 +216,8 @@ footer p+p{margin-top:4px;color:#bbb}
  .desc{font-size:17.5px}
  .acoes{flex-direction:column;align-items:stretch;gap:12px}
  .btn.p{font-size:17px}
- .r2,.r3,.r4{grid-template-columns:minmax(0,218px)}
- .row{gap:30px}
+ .car{--sw:min(66vw,260px)}
+ .trk{gap:18px}
  .voto{padding:20px 12px;margin-top:185px}.voto .mm{width:110px}.callout{padding:26px 20px}
  #men{min-width:220px}
  .tools{grid-template-columns:1fr}
@@ -218,8 +237,8 @@ footer p+p{margin-top:4px;color:#bbb}
  .lupa{width:34px;height:34px;top:10px;right:10px}
 }
 @media(max-width:360px){
+ :root{--gut:14px}
  .w{padding:0 14px}
- .r2,.r3,.r4{grid-template-columns:minmax(0,210px)}
  .btn.p{padding:14px 16px}
  #rel svg{width:88px}
 }
@@ -243,10 +262,8 @@ footer p+p{margin-top:4px;color:#bbb}
 <p class="sub">Um aviso para quem não pôde estar no culto.</p>
 <p class="desc">Uma aplicação para acompanhar as transmissões da IBN, receber avisos e permanecer conectado à comunidade.</p>
 <div class="acoes">
-<!-- PLACEHOLDER: troque href="#placeholder-prototipo" pelo link definitivo do protótipo (Figma otimizado ou página própria) e remova data-placeholder. -->
-<a class="btn p" href="#placeholder-prototipo" data-placeholder="o link do protótipo">Experimentar o protótipo</a>
-<!-- PLACEHOLDER: troque href="#placeholder-anuncio" pelo link da página do vídeo de apresentação e remova data-placeholder. -->
-<a class="btn s" href="#placeholder-anuncio" data-placeholder="o link do anúncio">Assistir ao anúncio</a>
+<a class="btn p" href="prototipo.html">Experimentar o protótipo</a>
+<a class="btn s" href="anuncio.html">Assistir ao anúncio</a>
 </div>
 </div>
 <div class="pair"><img src="img/hero.svg" width="1125" height="1024" alt="O ícone do IBN Avisos, um sino branco sobre uma forma vermelha, e o mascote de smoking, de costas, olhando para ele"></div>
@@ -263,30 +280,30 @@ footer p+p{margin-top:4px;color:#bbb}
 <section data-t="00:10" data-n="Domingo, 19h" id="s10"><div class="w">
 <div class="hd"><span class="mono st">00:10</span><h2>Domingo, 19h</h2></div>
 <div class="tx">
-<p>Não importa onde você esteja, seja presencialmente ou online, chegar a tempo é difícil. Chove, o trânsito para, chega uma encomenda, o micro-ondas apita, ou o aviso que deveria chamar você não funciona. Quando você vê, o culto já começou e a oração do começo ficou para trás.</p>
-<p>Como não posso resolver a parte do presencial, posso tentar aliviar a online. O IBN Avisos é um protótipo de aplicação feito para esse momento. Ele avisa quando a transmissão começa e leva a pessoa até ela. E tenta uma coisa mais difícil: fazer quem assiste de casa continuar sendo percebido pela comunidade.</p>
+<p>Chegar a tempo é difícil. Chove, o trânsito para, chega uma encomenda, ou o aviso que deveria chamar você não funciona. Quando você vê, o culto já começou e a oração do começo ficou para trás.</p>
+<p>Não posso resolver a parte do presencial, mas posso aliviar a online. O IBN Avisos é um protótipo que avisa quando a transmissão começa e leva você até ela. E tenta uma coisa mais difícil: fazer quem assiste de casa continuar sendo percebido pela comunidade.</p>
 </div>
 </div></section>
 
-<!-- 00:09 — Ferramentas (conforme o relatório de ferramentas). Cartões iguais: ícone, etapa, nome e descrição. -->
+<!-- 00:09 — Ferramentas -->
 <section class="g" data-t="00:09" data-n="Ferramentas e desenvolvimento" id="s9"><div class="w">
 <div class="hd"><span class="mono st">00:09</span><h2>Ferramentas e desenvolvimento</h2></div>
-<div class="tx"><p>Do desenho das telas ao vídeo de anúncio, tudo foi feito com ferramentas gratuitas ou com seus planos gratuitos.</p></div>
+<div class="tx"><p>Do desenho das telas ao vídeo de anúncio, tudo com ferramentas gratuitas ou seus planos gratuitos.</p></div>
 <div class="tools" style="margin-top:34px">
-<article class="tool"><span class="ic"><img src="img/tools/figma-icon.svg" width="56" height="56" loading="lazy" decoding="async" alt=""></span><div><p class="mono fin">PROTOTIPAGEM E ASSETS</p><h3>Figma</h3></div><p>Telas e protótipo da aplicação, e a vetorização dos elementos gráficos do vídeo.</p></article>
-<article class="tool"><span class="ic"><img src="img/tools/pinterest-icon.svg" width="56" height="56" loading="lazy" decoding="async" alt=""></span><div><p class="mono fin">PESQUISA VISUAL</p><h3>Pinterest</h3></div><p>Referências para as interfaces e para a composição e o motion design do vídeo.</p></article>
-<article class="tool"><span class="ic"><img src="img/tools/chatgpt-icon.svg" width="56" height="56" loading="lazy" decoding="async" alt=""></span><div><p class="mono fin">APOIO AO DESIGN</p><h3>ChatGPT</h3></div><p>Ideias, sugestões de design e ajuda com as dificuldades na criação das interfaces.</p></article>
-<article class="tool"><span class="ic"><img src="img/tools/youtube-icon.svg" width="56" height="56" loading="lazy" decoding="async" alt=""></span><div><p class="mono fin">APRENDIZADO E VÍDEO</p><h3>YouTube</h3></div><p>Tutoriais para tirar dúvidas técnicas e a hospedagem do vídeo de anúncio, para ver e rever quando quiser.</p></article>
-<article class="tool"><span class="ic"><img src="img/tools/vscode-icon.svg" width="56" height="56" loading="lazy" decoding="async" alt=""></span><div><p class="mono fin">DESENVOLVIMENTO DO SITE</p><h3>Visual Studio Code</h3></div><p>Escrita, edição e organização do código deste site de apresentação.</p></article>
-<article class="tool"><span class="ic"><img src="img/tools/github-pages-icon.svg" width="56" height="56" loading="lazy" decoding="async" alt=""></span><div><p class="mono fin">HOSPEDAGEM</p><h3>GitHub Pages</h3></div><p>Hospedagem gratuita deste site de apresentação.</p></article>
-<article class="tool"><span class="ic"><img src="img/tools/photopea-icon.svg" width="56" height="56" loading="lazy" decoding="async" alt=""></span><div><p class="mono fin">EDIÇÃO DE ASSETS</p><h3>Photopea</h3></div><p>Criação e edição dos elementos gráficos usados no vídeo.</p></article>
-<article class="tool"><span class="ic"><img src="img/tools/elevenlabs-icon.svg" width="56" height="56" loading="lazy" decoding="async" alt=""></span><div><p class="mono fin">NARRAÇÃO</p><h3>ElevenLabs</h3></div><p>Geração da narração usada no vídeo, no plano gratuito.</p></article>
-<article class="tool"><span class="ic"><img src="img/tools/googleflowmusic-icon.svg" width="56" height="56" loading="lazy" decoding="async" alt=""></span><div><p class="mono fin">TRILHA SONORA</p><h3>Google Flow Music</h3></div><p>Geração da música de fundo do vídeo.</p></article>
-<article class="tool"><span class="ic"><img src="img/tools/audacity-icon.svg" width="56" height="56" loading="lazy" decoding="async" alt=""></span><div><p class="mono fin">EDIÇÃO DE ÁUDIO</p><h3>Audacity</h3></div><p>Edição da narração e da trilha sonora, unindo tudo num só áudio antes de receber o visual.</p></article>
-<article class="tool"><span class="ic"><img src="img/tools/effectcraft-icon.png" width="56" height="56" loading="lazy" decoding="async" alt=""></span><div><p class="mono fin">EDIÇÃO E MOTION</p><h3>EffectCraft</h3></div><p>Montagem e animação do visual do vídeo, colocado por cima do áudio já integrado.</p></article>
-<article class="tool"><span class="ic"><img src="img/tools/googledocs-icon.svg" width="56" height="56" loading="lazy" decoding="async" alt=""></span><div><p class="mono fin">DOCUMENTAÇÃO</p><h3>Google Docs</h3></div><p>Roteiros, relatórios e demais documentos do projeto.</p></article>
+<article class="tool"><span class="ic"><img src="img/tools/figma-icon.svg" width="56" height="56" loading="lazy" decoding="async" alt=""></span><div><p class="mono fin">PROTOTIPAGEM E ASSETS</p><h3>Figma</h3></div><p>Telas, protótipo e vetorização dos elementos do vídeo.</p></article>
+<article class="tool"><span class="ic"><img src="img/tools/pinterest-icon.svg" width="56" height="56" loading="lazy" decoding="async" alt=""></span><div><p class="mono fin">PESQUISA VISUAL</p><h3>Pinterest</h3></div><p>Referências para as interfaces e o motion design.</p></article>
+<article class="tool"><span class="ic"><img src="img/tools/chatgpt-icon.svg" width="56" height="56" loading="lazy" decoding="async" alt=""></span><div><p class="mono fin">APOIO AO DESIGN</p><h3>ChatGPT</h3></div><p>Ideias e ajuda com as dificuldades no design das interfaces.</p></article>
+<article class="tool"><span class="ic"><img src="img/tools/youtube-icon.svg" width="56" height="56" loading="lazy" decoding="async" alt=""></span><div><p class="mono fin">APRENDIZADO E VÍDEO</p><h3>YouTube</h3></div><p>Tutoriais para dúvidas técnicas e hospedagem do vídeo de anúncio.</p></article>
+<article class="tool"><span class="ic"><img src="img/tools/vscode-icon.svg" width="56" height="56" loading="lazy" decoding="async" alt=""></span><div><p class="mono fin">DESENVOLVIMENTO DO SITE</p><h3>Visual Studio Code</h3></div><p>Escrita e organização do código deste site.</p></article>
+<article class="tool"><span class="ic"><img src="img/tools/github-pages-icon.svg" width="56" height="56" loading="lazy" decoding="async" alt=""></span><div><p class="mono fin">HOSPEDAGEM</p><h3>GitHub Pages</h3></div><p>Hospedagem gratuita deste site.</p></article>
+<article class="tool"><span class="ic"><img src="img/tools/photopea-icon.svg" width="56" height="56" loading="lazy" decoding="async" alt=""></span><div><p class="mono fin">EDIÇÃO DE ASSETS</p><h3>Photopea</h3></div><p>Criação e edição dos elementos gráficos do vídeo.</p></article>
+<article class="tool"><span class="ic"><img src="img/tools/elevenlabs-icon.svg" width="56" height="56" loading="lazy" decoding="async" alt=""></span><div><p class="mono fin">NARRAÇÃO</p><h3>ElevenLabs</h3></div><p>Narração do vídeo, no plano gratuito.</p></article>
+<article class="tool"><span class="ic"><img src="img/tools/googleflowmusic-icon.svg" width="56" height="56" loading="lazy" decoding="async" alt=""></span><div><p class="mono fin">TRILHA SONORA</p><h3>Google Flow Music</h3></div><p>Música de fundo do vídeo.</p></article>
+<article class="tool"><span class="ic"><img src="img/tools/audacity-icon.svg" width="56" height="56" loading="lazy" decoding="async" alt=""></span><div><p class="mono fin">EDIÇÃO DE ÁUDIO</p><h3>Audacity</h3></div><p>Edição da narração e da trilha, unidas num só áudio.</p></article>
+<article class="tool"><span class="ic"><img src="img/tools/effectcraft-icon.png" width="56" height="56" loading="lazy" decoding="async" alt=""></span><div><p class="mono fin">EDIÇÃO E MOTION</p><h3>EffectCraft</h3></div><p>Montagem e animação do visual do vídeo.</p></article>
+<article class="tool"><span class="ic"><img src="img/tools/googledocs-icon.svg" width="56" height="56" loading="lazy" decoding="async" alt=""></span><div><p class="mono fin">DOCUMENTAÇÃO</p><h3>Google Docs</h3></div><p>Roteiros, relatórios e documentos do projeto.</p></article>
 </div>
-<div class="tools1"><article class="tool zero"><div><p class="mono fin">CUSTO TOTAL</p><h3>R$ 0,00</h3></div><p>Tudo em planos gratuitos ou serviços sem custo. Nenhum software ou plataforma exigiu investimento.</p></article></div>
+<div class="tools1"><article class="tool zero"><div><p class="mono fin">CUSTO TOTAL</p><h3>R$ 0,00</h3></div><p>Tudo em planos gratuitos. Nenhuma ferramenta exigiu investimento.</p></article></div>
 </div></section>
 
 <!-- 00:08 -->
@@ -304,22 +321,31 @@ footer p+p{margin-top:4px;color:#bbb}
 <!-- 00:07 -->
 <section class="g" data-t="00:07" data-n="As decisões por trás do projeto" id="s7"><div class="w">
 <div class="hd"><span class="mono st">00:07</span><h2>As decisões por trás do projeto</h2></div>
-<div class="tx"><p>Algumas escolhas parecem óbvias depois que o app está desenhado. Não eram. Aqui está o raciocínio por trás de quatro delas.</p></div>
-<div class="dec" style="margin-top:34px">
+<div class="tx"><p>Algumas escolhas só parecem óbvias depois do app desenhado. Aqui está o raciocínio por trás delas.</p></div>
+<div class="why">
+<span class="mono">A PERGUNTA QUE TODO MUNDO FAZ</span>
+<h3>Por que um site para explicar o protótipo, em vez de já entregar a versão final?</h3>
+<ol>
+<li><b>A hospedagem não roda o que o app precisa.</b> O GitHub Pages só serve páginas estáticas, como esta. O app de verdade precisaria de um script consultando a API do YouTube para saber se há uma live e ler os comentários.</li>
+<li><b>Seria exagero para uma extensão.</b> Mesmo com custo zero em dinheiro, o custo em tempo iria para as alturas.</li>
+<li><b>Colocar o app no ar exigiria algum investimento.</b> E eu não quis assumir isso, para o projeto não parecer um serviço contratado pela igreja, em vez de uma extensão universitária.</li>
+</ol>
+</div>
+<div class="dec">
 <article class="q"><span class="mono n">PERGUNTA 1</span><h3>Por que um aplicativo próprio?</h3><p>Para concentrar os avisos em um só lugar e facilitar o acesso à transmissão.</p></article>
 <article class="q"><span class="mono n">PERGUNTA 2</span><h3>Por que não exigir cadastro?</h3><p>Para não criar uma barreira desnecessária para quem só quer acompanhar o culto.</p></article>
 <article class="q"><span class="mono n">PERGUNTA 3</span><h3>Por que esperar cinco minutos?</h3><p>Para evitar notificações provocadas por testes de transmissão.</p></article>
 <article class="q"><span class="mono n">PERGUNTA 4</span><h3>Por que não substituir o YouTube?</h3><p>Porque a proposta é facilitar o acesso ao conteúdo, não criar outra plataforma de vídeos.</p></article>
 </div>
- <div class="zap">
+<div class="zap">
 <span class="zi"><img src="img/zap-icon.svg" width="84" height="84" loading="lazy" decoding="async" alt="Ícone do WhatsApp"></span>
 <div>
 <span class="mono">E O WHATSAPP?</span>
 <h3>Uma ideia que eu não cheguei a tentar.</h3>
-<p>Eu pessoalmente não tentei usar o WhatsApp como um bot de avisos, por dois motivos:</p>
+<p>Não tentei usar o WhatsApp como bot de avisos, por dois motivos:</p>
 <ol>
-<li><b>Custo.</b> A API do WhatsApp é paga, e isso tiraria o <mark>custo zero</mark> que eu planejava desde o início e durante o processo do protótipo.</li>
-<li><b>Seria trocar um terceiro por outro.</b> Sair das notificações do YouTube para as do WhatsApp é trocar algo que não é meu por outra coisa que também não é. E a mensagem do bot sobre o culto ia disputar atenção com outras dez mensagens de contatos e grupos.</li>
+<li><b>Custo.</b> A API do WhatsApp é paga, e isso tiraria o <mark>custo zero</mark> que eu planejava desde o início.</li>
+<li><b>Trocar um terceiro por outro.</b> Sair das notificações do YouTube para as do WhatsApp é trocar algo que não é meu por outra coisa que também não é. E o aviso ia disputar atenção com outras dez mensagens de contatos e grupos.</li>
 </ol>
 </div>
 </div>
@@ -328,75 +354,44 @@ footer p+p{margin-top:4px;color:#bbb}
 <!-- 00:06 -->
 <section data-t="00:06" data-n="Entrando no app" id="s6"><div class="w">
 <div class="hd"><span class="mono st">00:06</span><h2>Entrando no app</h2></div>
-
-<div class="grp"><div class="row r2">
-<figure class="fg"><img class="scr" data-full="img/full/iphone.webp" src="img/iphone.png" width="600" height="1300" loading="lazy" decoding="async" alt="Tela inicial de um celular com o ícone do IBN Avisos"><figcaption><b>Ícone</b>Um sino dentro de um A, que fica na tela inicial do celular como qualquer outro aplicativo. A tela de iPhone foi escolhida só pela estética: o app foi pensado para rodar no navegador de qualquer celular, Android inclusive. Não precisa ter iPhone. (Geladeira inteligente eu ainda não testei.)</figcaption></figure>
-<figure class="fg"><img class="scr" data-full="img/full/splash.webp" src="img/splash.png" width="600" height="1300" loading="lazy" decoding="async" alt="Tela de abertura com o mascote deitado e o nome do aplicativo"><figcaption><b>Abertura</b>O relógio de smoking é o mascote, e não tem rosto de propósito.</figcaption></figure>
-</div></div>
-
-<div class="grp">
-<h3>Três boas-vindas</h3>
-<div class="tx"><p>“O culto já começou?”, “Dessa vez, chegue a tempo” e “O próximo culto começa aqui”. Uma ideia em cada tela, antes de pedir qualquer coisa.</p></div>
-<div class="row r3">
-<figure class="fg"><img class="scr" data-full="img/full/ap1.webp" src="img/ap1.png" width="600" height="1300" loading="lazy" decoding="async" alt="Boas-vindas: O culto já começou?"></figure>
-<figure class="fg"><img class="scr" data-full="img/full/ap2.webp" src="img/ap2.png" width="600" height="1300" loading="lazy" decoding="async" alt="Boas-vindas: Dessa vez, chegue a tempo"></figure>
-<figure class="fg"><img class="scr" data-full="img/full/ap3.webp" src="img/ap3.png" width="600" height="1300" loading="lazy" decoding="async" alt="Boas-vindas: O próximo culto começa aqui"></figure>
-</div></div>
-
-<div class="grp"><div class="row r3">
-<figure class="fg"><img class="mm" src="img/m1.png" width="321" height="270" loading="lazy" decoding="async" alt=""><img class="scr" data-full="img/full/perfis.webp" src="img/perfis.png" width="600" height="1300" loading="lazy" decoding="async" alt="Tela de escolha entre frequentador, pastor e equipe de mídia"><figcaption><b>Quem é você?</b>Frequentador, pastor ou mídia. No protótipo dá para ver os três. No app de verdade, o frequentador entraria direto, sem escolher nada.</figcaption></figure>
-<figure class="fg"><img class="scr" data-full="img/full/login.webp" src="img/login.png" width="600" height="1300" loading="lazy" decoding="async" alt="Login do frequentador, com Google ou sem conta"><figcaption><b>Entrar</b>Com o Google ou sem conta. Sem conta, o que a pessoa escolhe fica só no aparelho dela.</figcaption></figure>
-<figure class="fg"><img class="scr" data-full="img/full/google.webp" src="img/google.png" width="600" height="1300" loading="lazy" decoding="async" alt="Tela escura sincronizando as preferências"><figcaption><b>Sincronizando</b>O login com o Google, por enquanto, é simulado.</figcaption></figure>
-</div></div>
+<div class="car" role="region" aria-roledescription="carrossel" aria-label="Entrando no app"><div class="trk" tabindex="0"><figure class="fg"><img class="scr" src="img/t/iphone.webp" data-full="img/full/iphone.webp" width="860" height="1864" loading="lazy" decoding="async" alt="Tela inicial de um celular com o ícone do IBN Avisos"><figcaption><b>Ícone</b>Um sino dentro de um A, na tela inicial como qualquer app. O iPhone é só estética: o app roda no navegador de qualquer celular, Android inclusive. (Geladeira inteligente eu ainda não testei.)</figcaption></figure><figure class="fg"><img class="scr" src="img/t/splash.webp" data-full="img/full/splash.webp" width="860" height="1864" loading="lazy" decoding="async" alt="Tela de abertura com o mascote deitado e o nome do aplicativo"><figcaption><b>Abertura</b>O relógio de smoking é o mascote, e não tem rosto de propósito.</figcaption></figure><figure class="fg"><img class="scr" src="img/t/ap1.webp" data-full="img/full/ap1.webp" width="860" height="1864" loading="lazy" decoding="async" alt="Boas-vindas: O culto já começou?"><figcaption><b>O culto já começou?</b>Boas-vindas, 1 de 3.</figcaption></figure><figure class="fg"><img class="scr" src="img/t/ap2.webp" data-full="img/full/ap2.webp" width="860" height="1864" loading="lazy" decoding="async" alt="Boas-vindas: Dessa vez, chegue a tempo"><figcaption><b>Dessa vez, chegue a tempo</b>Boas-vindas, 2 de 3.</figcaption></figure><figure class="fg"><img class="scr" src="img/t/ap3.webp" data-full="img/full/ap3.webp" width="860" height="1864" loading="lazy" decoding="async" alt="Boas-vindas: O próximo culto começa aqui"><figcaption><b>O próximo culto começa aqui</b>Boas-vindas, 3 de 3.</figcaption></figure><figure class="fg"><img class="scr" src="img/t/perfis.webp" data-full="img/full/perfis.webp" width="860" height="1864" loading="lazy" decoding="async" alt="Tela de escolha entre frequentador, pastor e equipe de mídia"><figcaption><b>Quem é você?</b>Frequentador, pastor ou mídia. No app de verdade, o frequentador entraria direto.</figcaption></figure><figure class="fg"><img class="scr" src="img/t/login.webp" data-full="img/full/login.webp" width="860" height="1864" loading="lazy" decoding="async" alt="Login do frequentador, com Google ou sem conta"><figcaption><b>Entrar</b>Com o Google ou sem conta. Sem conta, o que a pessoa escolhe fica só no aparelho.</figcaption></figure><figure class="fg"><img class="scr" src="img/t/google.webp" data-full="img/full/google.webp" width="860" height="1864" loading="lazy" decoding="async" alt="Tela escura sincronizando as preferências"><figcaption><b>Sincronizando</b>O login com o Google, por enquanto, é simulado.</figcaption></figure></div><div class="ctl"><button type="button" class="ar pv" aria-label="Tela anterior">‹</button><div class="dts"></div><button type="button" class="ar nx" aria-label="Próxima tela">›</button></div></div>
 </div></section>
 
 <!-- 00:04 -->
 <section class="g" data-t="00:04" data-n="O início do frequentador" id="s4"><div class="w">
 <div class="hd"><span class="mono st">00:04</span><h2>O início do frequentador</h2></div>
-<div class="row r4">
-<figure class="fg"><img class="scr" data-full="img/full/home.webp" src="img/home.png" width="600" height="1300" loading="lazy" decoding="async" alt="Início: estamos preparando um aviso"><figcaption><b>Preparando um aviso</b>O mascote espera deitado enquanto o app verifica se a transmissão está mesmo no ar, e dá para tocar em “Verificar transmissão” para conferir na hora.</figcaption></figure>
-<figure class="fg"><img class="scr" data-full="img/full/espera.webp" src="img/espera.png" width="600" height="1300" loading="lazy" decoding="async" alt="O mascote de perto com um contador em 00:10"><figcaption><b>A espera de 5 minutos</b>Quando percebe uma transmissão, o app espera cinco minutos e confere se ela continua no ar antes de avisar. Assim ninguém é chamado por causa de um teste de som. Aqui a espera dura 10 segundos, porque ninguém merece esperar cinco minutos numa demonstração.</figcaption></figure>
-<figure class="fg"><img class="scr" data-full="img/full/aovivo.webp" src="img/aovivo.png" width="600" height="1300" loading="lazy" decoding="async" alt="Início: estamos ao vivo, com botões de entrar e compartilhar"><figcaption><b>Estamos ao vivo</b>O aviso chega com dois botões: entrar na live ou compartilhar o link com alguém.</figcaption></figure>
-<figure class="fg"><img class="scr" data-full="img/full/notif.webp" src="img/notif.png" width="600" height="1300" loading="lazy" decoding="async" alt="Lista de notificações"><figcaption><b>Avisos recentes</b>Os últimos avisos ficam guardados, junto de dicas como fixar o app na tela inicial.</figcaption></figure>
-</div>
+<div class="car" role="region" aria-roledescription="carrossel" aria-label="O início do frequentador"><div class="trk" tabindex="0"><figure class="fg"><img class="scr" src="img/t/home.webp" data-full="img/full/home.webp" width="860" height="1864" loading="lazy" decoding="async" alt="Início: estamos preparando um aviso"><figcaption><b>Preparando um aviso</b>O mascote espera enquanto o app verifica se a transmissão está no ar. Dá para tocar em “Verificar transmissão”.</figcaption></figure><figure class="fg"><img class="scr" src="img/t/espera.webp" data-full="img/full/espera.webp" width="860" height="1864" loading="lazy" decoding="async" alt="O mascote de perto com um contador em 00:10"><figcaption><b>A espera de 5 minutos</b>O app espera cinco minutos e confere se a live continua no ar, para que um teste de som não vire aviso. Aqui são 10 segundos.</figcaption></figure><figure class="fg"><img class="scr" src="img/t/aovivo.webp" data-full="img/full/aovivo.webp" width="860" height="1864" loading="lazy" decoding="async" alt="Início: estamos ao vivo, com botões de entrar e compartilhar"><figcaption><b>Estamos ao vivo</b>O aviso chega com dois botões: entrar na live ou compartilhar o link.</figcaption></figure><figure class="fg"><img class="scr" src="img/t/notif.webp" data-full="img/full/notif.webp" width="860" height="1864" loading="lazy" decoding="async" alt="Lista de notificações"><figcaption><b>Avisos recentes</b>Os últimos avisos ficam guardados, junto de dicas como fixar o app na tela inicial.</figcaption></figure></div><div class="ctl"><button type="button" class="ar pv" aria-label="Tela anterior">‹</button><div class="dts"></div><button type="button" class="ar nx" aria-label="Próxima tela">›</button></div></div>
 </div></section>
 
-<!-- 00:03 — Fluxo. Ordem conferida com o app (home -> espera -> ao vivo) e com o documento do projeto. -->
+<!-- 00:03 — Fluxo -->
 <section data-t="00:03" data-n="O caminho de um aviso" id="s3"><div class="w">
 <div class="hd"><span class="mono st">00:03</span><h2>O caminho de um aviso</h2></div>
-<div class="tx"><p>Do silêncio até o botão “Entrar na live”, é esse o caminho que o aviso percorre. Nem tudo isso existe de verdade ainda, então cada passo diz o que é o quê.</p></div>
+<div class="tx"><p>É o caminho que o aviso percorre, do silêncio até o botão “Entrar na live”. Cada passo diz se já existe no protótipo ou só no app de verdade.</p></div>
 <div class="leg" style="margin-top:26px">
 <span><span class="tag sim">SIMULADO</span> dá para ver nas telas do protótipo</span>
 <span><span class="tag prev">PREVISTO</span> só no app de verdade</span>
 </div>
 <ol class="fluxo">
-<li class="passo prev"><span class="num">1</span><div><h3>Sem live</h3><p>O mascote dorme. Não há nada para avisar, então o app fica quieto.</p><span class="tag prev">PREVISTO</span></div></li>
-<li class="passo sim"><span class="num">2</span><div><h3>Transmissão detectada</h3><p>A mídia começa a live e o app percebe que há uma transmissão pública no ar. No protótipo, o botão “Verificar transmissão” faz esse papel.</p><span class="tag sim">SIMULADO</span></div></li>
-<li class="passo sim"><span class="num">3</span><div><h3>Espera de cinco minutos</h3><p>O mascote espera. Passado o tempo, o app confere se a live continua no ar e pública. Assim um teste de som não vira aviso. Na demonstração, são 10 segundos.</p><span class="tag sim">SIMULADO</span></div></li>
-<li class="passo prev"><span class="num">4</span><div><h3>Quem recebe</h3><p>O aviso respeita as preferências: só chega a quem escolheu aquele culto e não marcou “estou presencialmente”.</p><span class="tag prev">PREVISTO</span></div></li>
-<li class="passo sim"><span class="num">5</span><div><h3>Aviso enviado</h3><p>A notificação chega, o mascote se apresenta e a tela mostra “Estamos ao vivo”, com dois caminhos: entrar na live ou compartilhar o link. O envio real de notificações é simulado.</p><span class="tag sim">SIMULADO</span></div></li>
-<li class="passo prev"><span class="num">6</span><div><h3>Depois da live</h3><p>Quando a transmissão termina, o botão passa a ser “Ver a gravação” e o mascote volta a dormir. Esperando o próximo culto.</p><span class="tag prev">PREVISTO</span></div></li>
+<li class="passo prev"><span class="num">1</span><div><h3>Sem live</h3><p>O mascote dorme e o app fica quieto.</p><span class="tag prev">PREVISTO</span></div></li>
+<li class="passo sim"><span class="num">2</span><div><h3>Transmissão detectada</h3><p>A mídia começa a live e o app percebe a transmissão. No protótipo, o botão “Verificar transmissão” faz esse papel.</p><span class="tag sim">SIMULADO</span></div></li>
+<li class="passo sim"><span class="num">3</span><div><h3>Espera de cinco minutos</h3><p>Passado o tempo, o app confere se a live continua no ar. Assim um teste de som não vira aviso. Na demonstração, são 10 segundos.</p><span class="tag sim">SIMULADO</span></div></li>
+<li class="passo prev"><span class="num">4</span><div><h3>Quem recebe</h3><p>Só quem escolheu aquele culto e não marcou “estou presencialmente”.</p><span class="tag prev">PREVISTO</span></div></li>
+<li class="passo sim"><span class="num">5</span><div><h3>Aviso enviado</h3><p>A notificação chega e a tela mostra “Estamos ao vivo”, com dois caminhos: entrar na live ou compartilhar o link.</p><span class="tag sim">SIMULADO</span></div></li>
+<li class="passo prev"><span class="num">6</span><div><h3>Depois da live</h3><p>O botão vira “Ver a gravação” e o mascote volta a dormir, esperando o próximo culto.</p><span class="tag prev">PREVISTO</span></div></li>
 </ol>
 </div></section>
 
 <!-- 00:02 -->
 <section class="g" data-t="00:02" data-n="O resto do app" id="s2"><div class="w">
 <div class="hd"><span class="mono st">00:02</span><h2>O resto do app</h2></div>
-<div class="grp"><div class="row r3">
-<figure class="fg"><img class="mm" src="img/m2.png" width="254" height="270" loading="lazy" decoding="async" alt=""><img class="scr" data-full="img/full/lives.webp" src="img/lives.png" width="600" height="1300" loading="lazy" decoding="async" alt="Lives anteriores"><figcaption><b>Lives anteriores</b>As últimas três semanas, com um atalho para a playlist do canal. Quem perdeu o começo assiste depois.</figcaption></figure>
-<figure class="fg"><img class="mm" src="img/m1.png" width="321" height="270" loading="lazy" decoding="async" alt=""><img class="scr" data-full="img/full/prefs.webp" src="img/prefs.png" width="600" height="1300" loading="lazy" decoding="async" alt="Preferências de cultos"><figcaption><b>Preferências</b>A pessoa escolhe quais cultos quer receber: quarta à noite, domingo de manhã, domingo à noite ou os extras. E tem o “estou presencialmente no culto”, que deixa o aviso quieto por algumas horas.</figcaption></figure>
-<figure class="fg"><img class="mm" src="img/m2.png" width="254" height="270" loading="lazy" decoding="async" alt=""><img class="scr" data-full="img/full/perfil.webp" src="img/perfil.png" width="600" height="1300" loading="lazy" decoding="async" alt="Perfil com foto de exemplo"><figcaption><b>Perfil</b>A foto é só um exemplo de como ficaria.</figcaption></figure>
-</div></div>
-
+<div class="grp">
+<div class="car hasm" role="region" aria-roledescription="carrossel" aria-label="O resto do app"><div class="trk" tabindex="0"><figure class="fg"><img class="mm" src="img/m2.png" width="254" height="270" loading="lazy" decoding="async" alt=""><img class="scr" src="img/t/lives.webp" data-full="img/full/lives.webp" width="860" height="1864" loading="lazy" decoding="async" alt="Lives anteriores"><figcaption><b>Lives anteriores</b>As últimas três semanas, com atalho para a playlist do canal.</figcaption></figure><figure class="fg"><img class="mm" src="img/m1.png" width="321" height="270" loading="lazy" decoding="async" alt=""><img class="scr" src="img/t/prefs.webp" data-full="img/full/prefs.webp" width="860" height="1864" loading="lazy" decoding="async" alt="Preferências de cultos"><figcaption><b>Preferências</b>A pessoa escolhe quais cultos quer receber e pode ligar o “estou presencialmente”, que silencia o aviso por algumas horas.</figcaption></figure><figure class="fg"><img class="mm" src="img/m2.png" width="254" height="270" loading="lazy" decoding="async" alt=""><img class="scr" src="img/t/perfil.webp" data-full="img/full/perfil.webp" width="860" height="1864" loading="lazy" decoding="async" alt="Perfil com foto de exemplo"><figcaption><b>Perfil</b>A foto é só um exemplo.</figcaption></figure></div><div class="ctl"><button type="button" class="ar pv" aria-label="Tela anterior">‹</button><div class="dts"></div><button type="button" class="ar nx" aria-label="Próxima tela">›</button></div></div>
+</div>
 <div class="grp">
 <h3>Pastor e mídia</h3>
-<div class="tx"><p>Os dois entram com usuário e senha. No protótipo, essas áreas ainda são um aviso de “em breve”, e a da mídia foi pensada para computador. Quem esquece a senha vê um aviso para falar com o desenvolvedor.</p></div>
-<div class="row r4">
-<figure class="fg"><img class="scr" data-full="img/full/pastor.webp" src="img/pastor.png" width="600" height="1300" loading="lazy" decoding="async" alt="Login do pastor"><figcaption>Login do pastor</figcaption></figure>
-<figure class="fg"><img class="scr" data-full="img/full/avpastor.webp" src="img/avpastor.png" width="600" height="1300" loading="lazy" decoding="async" alt="Aviso: área pastoral em breve"><figcaption>Área pastoral, em breve</figcaption></figure>
-<figure class="fg"><img class="scr" data-full="img/full/avmidia.webp" src="img/avmidia.png" width="600" height="1300" loading="lazy" decoding="async" alt="Aviso: disponível para computador"><figcaption>Área da mídia, só no computador</figcaption></figure>
-<figure class="fg"><img class="scr" data-full="img/full/senha.webp" src="img/senha.png" width="600" height="1300" loading="lazy" decoding="async" alt="Tela de esqueci a senha"><figcaption>Esqueci a senha</figcaption></figure>
-</div></div>
+<div class="tx"><p>Os dois entram com usuário e senha. No protótipo, essas áreas ainda são um aviso de “em breve”.</p></div>
+<div class="car" role="region" aria-roledescription="carrossel" aria-label="Pastor e mídia"><div class="trk" tabindex="0"><figure class="fg"><img class="scr" src="img/t/pastor.webp" data-full="img/full/pastor.webp" width="860" height="1864" loading="lazy" decoding="async" alt="Login do pastor"><figcaption>Login do pastor</figcaption></figure><figure class="fg"><img class="scr" src="img/t/avpastor.webp" data-full="img/full/avpastor.webp" width="860" height="1864" loading="lazy" decoding="async" alt="Aviso: área pastoral em breve"><figcaption>Área pastoral, em breve</figcaption></figure><figure class="fg"><img class="scr" src="img/t/avmidia.webp" data-full="img/full/avmidia.webp" width="860" height="1864" loading="lazy" decoding="async" alt="Aviso: disponível para computador"><figcaption>Área da mídia, só no computador</figcaption></figure><figure class="fg"><img class="scr" src="img/t/senha.webp" data-full="img/full/senha.webp" width="860" height="1864" loading="lazy" decoding="async" alt="Tela de esqueci a senha"><figcaption>Esqueci a senha</figcaption></figure></div><div class="ctl"><button type="button" class="ar pv" aria-label="Tela anterior">‹</button><div class="dts"></div><button type="button" class="ar nx" aria-label="Próxima tela">›</button></div></div>
+</div>
 </div></section>
 
 <!-- 00:01 -->
@@ -419,16 +414,16 @@ footer p+p{margin-top:4px;color:#bbb}
 <div class="col ex">
 <span class="tag prev">POSSIBILIDADES</span>
 <h3>Possíveis expansões</h3>
-<p>Aqui eu só aponto para onde o app pode ir:</p>
+<p>Só aponta para onde o app pode ir:</p>
 <ul>
-<li>Comentários importantes, como um pedido de oração, aprovados pela mídia e entregues ao pastor, para quem assiste de casa ser lido.</li>
-<li>Uma área da mídia com mensagens prontas e um botão de “avisar agora”, para quando o aviso automático falhar.</li>
+<li>Comentários importantes, como pedidos de oração, aprovados pela mídia e entregues ao pastor.</li>
+<li>Área da mídia com mensagens prontas e um botão “avisar agora”, para quando o aviso automático falhar.</li>
 <li>Aviso por localização, para não chamar quem já está no templo.</li>
 <li>Avisos de outros conteúdos do canal, desligados por padrão.</li>
 </ul>
 </div>
 </div>
-<div class="tx" style="margin-top:26px"><p>Tudo isso guardando o mínimo possível de dados, porque convicção religiosa é dado sensível pela lei.</p></div>
+<div class="tx" style="margin-top:26px"><p>Como é só um protótipo, nenhum dado de ninguém foi usado. Se um dia virar app de verdade, a ideia é guardar o mínimo possível.</p></div>
 <img class="apr" src="img/apr-e.png" width="283" height="359" loading="lazy" decoding="async" alt="O mascote apresentando com a mão aberta">
 </div></section>
 
@@ -489,6 +484,30 @@ document.querySelectorAll('[data-placeholder]').forEach(function(a){a.addEventLi
 var fm=document.querySelector('.fm');
 if(fm&&window.matchMedia('(max-width:520px)').matches)fm.open=false;
 
+
+/* ---------- carrosséis ---------- */
+var reduz=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+document.querySelectorAll('.car').forEach(function(c){
+ var tr=c.querySelector('.trk'),sl=[].slice.call(tr.children),dt=c.querySelector('.dts'),pv=c.querySelector('.pv'),nx=c.querySelector('.nx'),at=0,dots=[];
+ sl.forEach(function(s,i){var d=document.createElement('button');d.type='button';d.setAttribute('aria-label','Ir para a tela '+(i+1)+' de '+sl.length);d.addEventListener('click',function(){ir(i)});dt.appendChild(d);dots.push(d)});
+ function pad(){return parseFloat(getComputedStyle(tr).paddingLeft)||0}
+ function ir(i){i=Math.max(0,Math.min(sl.length-1,i));tr.scrollTo({left:sl[i].offsetLeft-pad(),behavior:reduz?'auto':'smooth'})}
+ function atual(){
+  var x=tr.scrollLeft,p=pad(),b=0,m=1e9;
+  sl.forEach(function(s,i){var d=Math.abs(s.offsetLeft-p-x);if(d<m){m=d;b=i}});
+  if(x+tr.clientWidth>=tr.scrollWidth-2)b=sl.length-1;
+  at=b;dots.forEach(function(d,i){d.classList.toggle('on',i===b);if(i===b)d.setAttribute('aria-current','true');else d.removeAttribute('aria-current')});
+  pv.disabled=x<=2;nx.disabled=x+tr.clientWidth>=tr.scrollWidth-2}
+ function cabe(){c.classList.toggle('fit',tr.scrollWidth<=tr.clientWidth+2);atual()}
+ function passo(dir){var x=tr.scrollLeft,p=pad(),alvo=null;
+  sl.forEach(function(s){var l=s.offsetLeft-p;if(dir<0){if(l<x-4&&(alvo===null||l>alvo))alvo=l}else{if(l>x+4&&(alvo===null||l<alvo))alvo=l}});
+  if(alvo===null)alvo=dir<0?0:tr.scrollWidth-tr.clientWidth;
+  tr.scrollTo({left:alvo,behavior:reduz?'auto':'smooth'})}
+ pv.addEventListener('click',function(){passo(-1)});nx.addEventListener('click',function(){passo(1)});
+ tr.addEventListener('scroll',function(){window.requestAnimationFrame(atual)},{passive:true});
+ window.addEventListener('resize',cabe);window.addEventListener('load',cabe);cabe();
+});
+
 /* ---------- ampliação das telas ---------- */
 var imgs=[].slice.call(document.querySelectorAll('img.scr')),ico='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21M10.5 7.5v6M7.5 10.5h6"/></svg>';
 imgs.forEach(function(im,i){
@@ -496,14 +515,14 @@ imgs.forEach(function(im,i){
  var b=document.createElement('button');b.type='button';b.className='lupa';b.innerHTML=ico;b.setAttribute('aria-label','Ampliar imagem: '+im.alt);b.addEventListener('click',function(){abre(i,b)});w.appendChild(b)});
 var lb=document.getElementById('lb'),li=document.getElementById('lbi'),lbs=document.getElementById('lbs'),lc=document.getElementById('lbc'),lt=document.getElementById('lbt'),
  ba=document.getElementById('lba'),bb=document.getElementById('lbb'),bm=document.getElementById('lbm'),bp=document.getElementById('lbp'),bx=document.getElementById('lbx');
-var idx=0,sc=1,tx=0,ty=0,ret=null,sy=0,aberto=false,MAX=4;
+var lst=imgs,idx=0,sc=1,tx=0,ty=0,ret=null,sy=0,aberto=false,MAX=4;
 function aplica(){li.style.transform='translate('+tx+'px,'+ty+'px) scale('+sc+')';lbs.classList.toggle('z',sc>1);bm.disabled=sc<=1;bp.disabled=sc>=MAX}
 function limita(){var r=li.getBoundingClientRect(),w=li.offsetWidth*sc,h=li.offsetHeight*sc,sw=lbs.clientWidth,sh=lbs.clientHeight,mx=Math.max(0,(w-sw)/2),my=Math.max(0,(h-sh)/2);
  tx=Math.max(-mx,Math.min(mx,tx));ty=Math.max(-my,Math.min(my,ty))}
 function zoom(n){sc=Math.max(1,Math.min(MAX,n));if(sc===1){tx=0;ty=0}limita();aplica()}
-function mostra(i){idx=(i+imgs.length)%imgs.length;var im=imgs[idx];sc=1;tx=0;ty=0;var th=im.currentSrc||im.src,fu=im.dataset.full;li.src=th;li.alt=im.alt;if(fu){var pr=new Image();pr.onload=function(){if(aberto&&imgs[idx]===im)li.src=fu};pr.src=fu}lc.textContent=(idx+1)+' / '+imgs.length;
- var f=im.closest('figure'),c=f&&f.querySelector('figcaption'),bb2=c&&c.querySelector('b'),t=c?(bb2?bb2.textContent+'. '+c.textContent.slice(bb2.textContent.length):c.textContent):im.alt;lt.textContent=t.length>160?(bb2?bb2.textContent+'. '+im.alt:im.alt):t;aplica()}
-function abre(i,origem){ret=origem;sy=window.pageYOffset;
+function mostra(i){idx=(i+lst.length)%lst.length;var im=lst[idx];sc=1;tx=0;ty=0;var th=im.currentSrc||im.src,fu=im.dataset.full;li.src=th;li.alt=im.alt;if(fu){var pr=new Image();pr.onload=function(){if(aberto&&lst[idx]===im)li.src=fu};pr.src=fu}lc.textContent=(idx+1)+' / '+lst.length;
+ var f=im.closest('figure'),c=f&&f.querySelector('figcaption'),bb2=c&&c.querySelector('b'),sp=bb2?(/[.?!]$/.test(bb2.textContent)?' ':'. '):'',t=c?(bb2?bb2.textContent+sp+c.textContent.slice(bb2.textContent.length):c.textContent):im.alt;lt.textContent=t.length>160?(bb2?bb2.textContent+sp+im.alt:im.alt):t;aplica()}
+function abre(i,origem){ret=origem;sy=window.pageYOffset;var cr=imgs[i].closest('.car');lst=cr?[].slice.call(cr.querySelectorAll('img.scr')):imgs;i=lst.indexOf(imgs[i]);
  document.body.style.cssText+=';position:fixed;top:-'+sy+'px;left:0;right:0;width:100%';
  lb.classList.add('on');lb.setAttribute('aria-hidden','false');aberto=true;mostra(i);bx.focus()}
 function fechaLb(){if(!aberto)return;aberto=false;lb.classList.remove('on');lb.setAttribute('aria-hidden','true');

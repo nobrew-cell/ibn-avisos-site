@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Assista ao anúncio — IBN Avisos</title>
+<meta name="description" content="O vídeo de anúncio do IBN Avisos, o protótipo de extensão universitária que avisa quando o culto começa.">
+<meta name="theme-color" content="#141414">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:title" content="Assista ao anúncio — IBN Avisos">
+<meta property="og:description" content="O vídeo de anúncio do IBN Avisos.">
+<link rel="icon" href="img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@125,800&family=IBM+Plex+Mono:wght@500&family=Source+Serif+4:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="paginas.css">
+</head>
+<body>
+
+<div class="topo"><div class="w">
+<a class="voltar" href="index.html">← Voltar ao site</a>
+<span class="marca">IBN <span>Avisos</span></span>
+</div></div>
+
+<header class="cab"><div class="w">
+<span class="mono st">anúncio</span>
+<h1>Assista ao anúncio</h1>
+<p>O vídeo que apresenta o IBN Avisos. Fica aqui para quem quiser ver, ou rever, quando e quantas vezes quiser.</p>
+</div></header>
+
+<main class="cena"><div class="w">
+
+<!--
+  COMO COLOCAR O VÍDEO
+  1) Suba o vídeo no YouTube.
+  2) Copie o código que aparece no endereço depois de "v=" (ou depois de "youtu.be/").
+     Exemplo: em https://www.youtube.com/watch?v=AbC123xyz00 o código é AbC123xyz00
+  3) Cole o código entre as aspas de data-youtube-id abaixo.
+  Pronto: o espaço tracejado some e o vídeo aparece, com um botão de play.
+  O vídeo só carrega quando a pessoa toca em play (deixa a página leve).
+-->
+<div class="video" id="video" data-youtube-id="" data-titulo="Anúncio do IBN Avisos">
+<div class="vazio" id="vazio">
+<span class="play" aria-hidden="true"></span>
+<span class="mono">ESPAÇO RESERVADO</span>
+<p>O vídeo de anúncio entra aqui.</p>
+</div>
+</div>
+
+<div class="acoes">
+<a class="btn p" href="prototipo.html">Experimentar o protótipo</a>
+<a class="btn s" id="yt" href="#" hidden target="_blank" rel="noopener">Abrir no YouTube</a>
+<a class="btn s" href="index.html">Voltar ao site</a>
+</div>
+
+<div class="abaixo">
+<section class="card">
+<h2>Sobre o vídeo</h2>
+<p>É uma apresentação curta do IBN Avisos: o problema de chegar ao culto e perceber que o começo já passou, e a forma como o app tenta resolver isso, com um aviso na hora certa e um toque para entrar na transmissão.</p>
+<p>O mascote é o Horivaldo, o relógio de smoking.</p>
+</section>
+<section class="card">
+<h2>Feito com</h2>
+<p><b>Narração:</b> ElevenLabs. <b>Trilha:</b> Google Flow Music. <b>Áudio:</b> Audacity. <b>Edição e animação:</b> EffectCraft. <b>Elementos gráficos:</b> Figma e Photopea.</p>
+<p>A lista completa de ferramentas está na <a href="index.html#s9">página principal</a>.</p>
+</section>
+</div>
+
+<!--
+  TEXTO DA NARRAÇÃO (opcional)
+  Para mostrar o texto do vídeo, cole a narração dentro de <div class="corpo"> (um <p> por parágrafo)
+  e apague o atributo "hidden" da <section> abaixo.
+-->
+<section class="card txt" style="max-width:900px;margin:22px auto 0" hidden>
+<details>
+<summary>Ler o texto da narração</summary>
+<div class="corpo">
+<p>[Cole aqui o texto da narração.]</p>
+</div>
+</details>
+</section>
+
+</div></main>
+
+<footer><div class="w">
+<p><a href="index.html">Voltar ao site de apresentação</a> · <a href="prototipo.html">Experimentar o protótipo</a></p>
+<p>IBN Avisos · protótipo de extensão universitária</p>
+</div></footer>
+
+<script>
+(function(){
+var box=document.getElementById('video'),id=(box.getAttribute('data-youtube-id')||'').trim();
+if(!/^[A-Za-z0-9_-]{6,20}$/.test(id))return;               /* sem código válido: mantém o espaço reservado */
+var titulo=box.getAttribute('data-titulo')||'Vídeo';
+var v=document.getElementById('vazio');if(v)v.remove();
+var b=document.createElement('button');b.type='button';b.className='fac';b.setAttribute('aria-label','Assistir: '+titulo);
+b.style.backgroundImage='url(https://i.ytimg.com/vi/'+id+'/hqdefault.jpg)';
+b.innerHTML='<span class="play" aria-hidden="true"></span>';
+b.addEventListener('click',function(){
+ var f=document.createElement('iframe');
+ f.src='https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&rel=0';
+ f.title=titulo;f.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+ f.allowFullscreen=true;f.referrerPolicy='strict-origin-when-cross-origin';
+ box.replaceChild(f,b);
+});
+box.appendChild(b);
+var y=document.getElementById('yt');y.href='https://www.youtube.com/watch?v='+id;y.hidden=false;
+})();
+</script>
+</body>
+</html>
