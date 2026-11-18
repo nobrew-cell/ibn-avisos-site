@@ -5,9 +5,9 @@
 **Chegue a tempo.**
 Protótipo de um PWA que avisa quando a transmissão do culto começa e leva você até ela.
 
-[![Site](https://img.shields.io/badge/🌐_Ver_o_site-ff0931?style=for-the-badge)](https://SEU-USUARIO.github.io/NOME-DO-REPOSITORIO/)
-[![Protótipo](https://img.shields.io/badge/📱_Testar_o_protótipo-141414?style=for-the-badge)](https://SEU-USUARIO.github.io/NOME-DO-REPOSITORIO/prototipo.html)
-[![Vídeo](https://img.shields.io/badge/🎬_Vídeo_de_anúncio-e5ae45?style=for-the-badge&labelColor=141414)](https://SEU-USUARIO.github.io/NOME-DO-REPOSITORIO/anuncio.html)
+[![Site](https://img.shields.io/badge/🌐_Ver_o_site-ff0931?style=for-the-badge)](https://nobrew-cell.github.io/ibn-avisos-site/index.html)
+[![Protótipo](https://img.shields.io/badge/📱_Testar_o_protótipo-141414?style=for-the-badge)](https://nobrew-cell.github.io/ibn-avisos-site/prototipo.html)
+[![Vídeo](https://img.shields.io/badge/🎬_Vídeo_de_anúncio-e5ae45?style=for-the-badge&labelColor=141414)](https://nobrew-cell.github.io/ibn-avisos-site/anuncio.html)
 
 ![Projeto de extensão](https://img.shields.io/badge/projeto-de_extensão_UNIFACS-ff0931?style=flat-square)
 ![Protótipo](https://img.shields.io/badge/status-protótipo-e5ae45?style=flat-square)
@@ -60,10 +60,6 @@ python3 -m http.server 8000
 ```
 
 e abrir `http://localhost:8000`.
-
-## 🛠️ Feito com ferramentas gratuitas
-
-Figma · Pinterest · ChatGPT · YouTube · Visual Studio Code · GitHub Pages · Photopea · ElevenLabs · Google Flow Music · Audacity · EffectCraft · Google Docs
 
 ## 📄 Licença
 
