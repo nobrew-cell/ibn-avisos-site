@@ -168,7 +168,7 @@ function go(id,how){
  if(how==='jump')hist=[];
  cur=id;var s=S[id];
  show(id);
- ph.classList.toggle('esp',id==='espera');ph.style.setProperty('--r',0);
+ ph.classList.toggle('esp',id==='espera');if(id==='espera')ph.style.setProperty('--r',0);
  hsEl.innerHTML='';
  s.hot.forEach(function(h){
   var b=document.createElement('button');b.type='button';b.className='hs'+(h.main?' main':'');b.setAttribute('style',pc(h.r));b.setAttribute('aria-label',h.l);
